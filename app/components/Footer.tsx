@@ -79,11 +79,11 @@ const Footer = () => {
                         <div className="space-y-6">
                             <div>
                                 <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest mb-2">Email</p>
-                                <p className="text-xl font-bold">hello@okio.io</p>
+                                <p className="text-xl font-bold">hello@CultureCapsule.admin</p>
                             </div>
                             <div>
                                 <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest mb-2">Phone</p>
-                                <p className="text-xl font-bold">+44 (0) 20 7946 0123</p>
+                                <p className="text-xl font-bold">+91 9999999999</p>
                             </div>
                         </div>
                     </motion.div>
@@ -95,7 +95,7 @@ const Footer = () => {
                         whileInView={{ opacity: 1 }}
                         className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]"
                     >
-                        © 2024 OKIO® STUDIO — ALL RIGHTS RESERVED.
+                        © 2024 CULTURE CAPSULE® STUDIO — ALL RIGHTS RESERVED.
                     </motion.p>
                     <div className="flex gap-12">
                         <Link href="#" className="text-white/40 hover:text-white text-[10px] font-bold uppercase tracking-[0.3em] transition-colors">Privacy Policy</Link>
