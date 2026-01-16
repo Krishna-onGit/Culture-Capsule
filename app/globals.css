@@ -66,7 +66,7 @@ html.lenis body {
 }
 
 .footer-gradient {
-  background: linear-gradient(90deg, #FF1B6D 0%, #D946EF 25%, #7B3FF2 50%, #0066FF 75%, #5B7CFF 100%);
+  background: linear-gradient(to bottom, #D946EF 0%, transparent 50%), linear-gradient(90deg, #FF1B6D 0%, #D946EF 25%, #7B3FF2 50%, #0066FF 75%, #5B7CFF 100%);
 }
 
 .btn-gradient {
