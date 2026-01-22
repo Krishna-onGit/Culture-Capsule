@@ -1,0 +1,320 @@
+CULTURE CAPSULE® - UI DESIGN SYSTEM & PRODUCT DOCUMENTATION
+================================================================================
+Generated for: Next.js + Tailwind CSS Production Build
+Date: January 2026
+Version: 1.0.0
+================================================================================
+
+1. INTRODUCTION & PRODUCT OVERVIEW
+--------------------------------------------------------------------------------
+• Product Name: Culture Capsule®
+• Product Type: Creative Digital Agency Portfolio
+• Purpose: To document the visual language, behavior, and code implementations
+  of the live production website.
+• Scope: Covers all UI elements, layout patterns, and interaction models currently
+  implemented in the codebase.
+• Audience: UI/UX Designers, Frontend Developers, QA Engineers.
+
+--------------------------------------------------------------------------------
+
+2. DESIGN PRINCIPLES
+--------------------------------------------------------------------------------
+
+1. Extreme Rounding & Softness
+   UI elements (cards, inputs, buttons) feature aggressive corner radii 
+   (2.5rem to 4rem), creating a friendly, organic, and modern feel.
+
+2. Glassmorphism & Depth
+   Heavy usage of semi-transparent backgrounds (bg-white/5, bg-white/10), 
+   background blurs, and layered gradients to establish hierarchy on dark backgrounds.
+
+3. Vibrant Gradient Immersion
+   The brand relies on deep, dark backgrounds illuminated by rich, moving gradients 
+   of Blue (#0066FF), Purple (#7B3FF2), and Pink (#FF1B6D).
+
+4. Typography as Texture
+   Typography is not just for reading but for feeling. Massive italic serif headings
+   contrast with clean sans-serif body text and handwritten accents.
+
+5. Motion-First Interaction
+   Static states are rare. Elements float, react to scroll (parallax), and 
+   respond physically (scale, tilt) to user interaction.
+
+--------------------------------------------------------------------------------
+
+3. BRAND FOUNDATIONS
+
+3.1 COLOR SYSTEM
+--------------------------------------------------------------------------------
+Primary Palette (Gradients & Accents):
+• Blue           : #0066FF (Hero gradients, accents)
+• Lavender       : #5B7CFF (Secondary gradients)
+• Purple         : #7B3FF2 (Primary brand color, buttons)
+• Deep Purple    : #1a0b2e (Section backgrounds)
+• Darkest Plum   : #0a0118 (Footer/Dark backgrounds)
+• Magenta/Pink   : #D946EF (Gradients, hover states)
+• Hot Pink       : #FF1B6D (Accents, gradients)
+
+Neutral Colors:
+• White          : #FFFFFF (Primary text, light backgrounds)
+• Black          : #171717 (Body text on light backgrounds)
+• Gray-900       : #111827 (Headings on light backgrounds)
+• Gray-500       : #6B7280 (Secondary text on light backgrounds)
+• Gray-100       : #F3F4F6 (Light backgrounds/borders)
+
+Glassmorphism & Opacities (Dark Theme):
+• Surface Low    : bg-white/5  (Inputs, secondary cards)
+• Surface Mid    : bg-white/10 (Buttons, active states)
+• Surface High   : bg-white/20 (Hover states, badges)
+• Border         : border-white/10 to border-white/20
+• Text Muted     : text-white/40, text-white/50, text-white/80
+
+Pre-defined Gradients (CSS Classes):
+• .hero-gradient    : Linear 135deg (#0066FF -> #7B3FF2 -> #D946EF -> #FF1B6D)
+• .plans-gradient   : Linear 180deg (#0a0118 -> #1a0b2e -> #0a0118)
+• .footer-gradient  : Complex multi-stop linear gradient
+• .btn-gradient     : Linear 135deg (#7B3FF2, #D946EF, #FF1B6D)
+
+--------------------------------------------------------------------------------
+
+3.2 TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+Font Families:
+• Primary Sans : Inter (var(--font-inter))
+• Accent Script: Dancing Script (var(--font-script))
+
+Hierarchy & Usage:
+
+1. Display Hero
+   • Size: clamp(3rem, 8vw, 7rem)
+   • Weight: Bold / Black
+   • Line Height: 0.9
+   • Tracking: Tighter (-0.05em)
+   • Usage: Main Hero statement ("We Turn Culture Into Growth")
+
+2. Section Headings
+   • Size: text-5xl (48px) to text-9xl (128px)
+   • Weight: Black / Bold
+   • Style: Italic
+   • Tracking: Tighter
+   • Usage: "Projects", "Plans with purpose", "Let's talk"
+
+3. Card Titles
+   • Size: text-2xl (24px) to text-3xl (30px)
+   • Weight: Bold
+   • Usage: Project names, Plan tiers
+
+4. Body / Lead
+   • Size: text-xl (20px) to text-2xl (24px)
+   • Weight: Medium
+   • Usage: Section introductions, detailed descriptions
+
+5. Standard Text
+   • Size: text-base (16px) to text-lg (18px)
+   • Weight: Medium
+   • Usage: FAQ answers, feature lists
+
+6. UI Labels / Microcopy
+   • Size: text-xs (12px) or text-[10px]
+   • Weight: Bold
+   • Transform: Uppercase
+   • Tracking: Widest (0.2em - 0.3em)
+   • Usage: "Creative Agency", "Years Experience", Footer links
+
+--------------------------------------------------------------------------------
+
+3.3 SPACING & LAYOUT SYSTEM
+--------------------------------------------------------------------------------
+Grid & Container:
+• Max Width      : max-w-7xl (1280px)
+• Horizontal Pad : px-6 (24px)
+• Layout Strategy: Flexbox for rows, CSS Grid for cards (grid-cols-1 md:grid-cols-2)
+
+Vertical Rhythm:
+• Section Padding: py-24 (96px) - Standard
+• Hero Padding   : pt-32 pb-20 (128px / 80px)
+• Contact Padding: py-32 (128px)
+
+Component Spacing:
+• Gaps           : gap-6 (24px), gap-10 (40px), gap-16 (64px)
+• Card Internal  : p-12 (48px) for Pricing, p-10 (40px) for FAQ
+
+Border Radius (Corner Smoothing):
+• Buttons        : rounded-full (9999px)
+• Cards          : rounded-[2.5rem] (40px)
+• Large Panels   : rounded-[3rem] (48px) to rounded-[4rem] (64px)
+• Inputs         : rounded-[2rem] (32px)
+
+--------------------------------------------------------------------------------
+
+4. UI COMPONENT LIBRARY
+--------------------------------------------------------------------------------
+
+[BUTTONS]
+1. Primary Gradient Button
+   • Style: .btn-gradient background, text-white, rounded-full
+   • Shadow: shadow-lg (often shadow-2xl on sections)
+   • Hover: Brightness 1.1, translateY(-2px), slight scale
+
+2. Glass Button
+   • Style: bg-white/10, backdrop-blur-md, border border-white/20
+   • Text: White, font-bold
+   • Hover: bg-white/20
+
+3. Text Link Button
+   • Style: font-bold, border-b-2 border-black
+   • Hover: text-gray-600, border-gray-600
+   • Usage: "View all projects" (Light background)
+
+[CARDS]
+1. Project Card
+   • Structure: Image container + Title/Category row
+   • Rounded: rounded-[2.5rem]
+   • Interaction: Image scale on hover, Title slide up
+   • Shadow: shadow-lg -> shadow-2xl
+
+2. Pricing 'Plan' Card
+   • Structure: Vertical stack, glassmorphism background
+   • Rounded: rounded-[4rem]
+   • Border: border-white/10
+   • Interaction: 3D Tilt effect (preserve-3d), Border light up
+
+3. FAQ Accordion
+   • Structure: Bordered container, Expandable
+   • Rounded: rounded-[2.5rem]
+   • State Open: colored gradient background, shadow-md
+   • State Closed: bg-white, shadow-sm
+   • Icon: Circle with Plus/Minus, rotates 180deg
+
+[FORMS]
+1. Input Fields
+   • Style: bg-white/5, border border-white/10
+   • Rounded: rounded-[2rem]
+   • Padding: px-8 py-5
+   • Focus: ring-2 ring-purple-500
+
+[NAVIGATION]
+1. Navbar
+   • Desktop: Logo left, Links center, CTA right
+   • Mobile: Hamburger menu, full-screen drop-down
+   • Behavior: Transparent at top -> White bg + shadow on scroll
+
+2. Footer
+   • Structure: 4 Column Grid (Brand, Nav, Connect, Contact)
+   • Style: Dark gradient background
+   • Typography: Large headers for brand, small caps for categories
+
+--------------------------------------------------------------------------------
+
+5. SECTION & PAGE PATTERNS
+--------------------------------------------------------------------------------
+
+1. HERO SECTION
+   • Layout: Centered text, heavy typography
+   • Background: .hero-gradient
+   • Motion: Text stagger reveal, floating orbs, noise texture overlay
+
+2. WORK GRID (Projects)
+   • Layout: 2-Column Grid
+   • Pattern: "Even" columns parallax up, "Odd" columns parallax down
+   • Background: White (High contrast against Hero)
+
+3. ABOUT SECTION
+   • Layout: Split (Image Left / Text Right)
+   • Feature: Silhouette image with rotating circle decoration
+   • Stats: Grid below text
+
+4. PRICING SECTION
+   • Layout: 2-Column Grid
+   • Cards: Large glass cards with check-lists and CTA
+
+5. CONTACT SECTION
+   • Layout: Centered Header, Form below
+   • Background: .contact-gradient + Animated blobs
+   • Form Pattern: Name/Email (50% w) -> Message (100% w) -> Button
+
+--------------------------------------------------------------------------------
+
+6. MOTION & INTERACTION GUIDELINES
+--------------------------------------------------------------------------------
+
+Scroll Behavior:
+• Lenis Smooth Scroll implemented globally.
+• Parallax: Images and cards move at different speeds (scrub: 1).
+• Reveals: Elements translate Y (50px -> 0) and fade in (opacity 0 -> 1).
+
+Micro-Interactions:
+• Buttons: Scale up (1.02 - 1.05) on hover, scale down (0.95 - 0.98) on tap.
+• Links: Standard color transition (300ms).
+• Cards: Hover lifts card (y: -10px) and creates shadow bloom.
+
+Animation Specs (Framer Motion / GSAP):
+• Entry Duration: 0.8s - 1.2s
+• Easing: 'power3.out' (GSAP) or 'spring' (Framer)
+• Stagger: 0.1s - 0.2s between list items
+
+--------------------------------------------------------------------------------
+
+7. ACCESSIBILITY CONSIDERATIONS
+--------------------------------------------------------------------------------
+• Contrast:
+  - High contrast maintained on Dark sections (White text on Deep Purple).
+  - Light sections use dark gray/black text.
+  - Low contrast text (text-white/40) strictly reserved for decorative/secondary info.
+• Inputs: Focus states clearly defined with 'ring-purple-500'.
+• Motion: 'suppressHydrationWarning' and client-side checks suggest adherence to
+  rendering standards, though 'prefers-reduced-motion' not explicitly found in CSS.
+
+--------------------------------------------------------------------------------
+
+8. RESPONSIVE BEHAVIOR
+--------------------------------------------------------------------------------
+Breakpoints (Tailwind Defaults):
+• Mobile (default): Single column layouts.
+• MD (768px): 2-column grids (Projects, Plans). Navbar switches to simplified.
+• LG (1024px): 4-column grids (Footer). Larger Typography.
+
+Specific Adaptations:
+• Typography: 'clamp' used for Hero title to scale fluidly without breakpoints.
+• Spacing: Padding reduces on mobile (px-6 is constant global padding).
+• Navigation: Hides links -> Shows Hamburger menu on < MD.
+
+--------------------------------------------------------------------------------
+
+9. DESIGN → DEVELOPMENT MAPPING
+--------------------------------------------------------------------------------
+Colors:
+• Primary Accent -> text-blue-400 / text-purple-500
+• Dark BG        -> bg-[#1a0b2e] or .[name]-gradient classes
+
+Spacing:
+• Standard Pad   -> p-6 / px-6
+• Section Spacer -> py-24
+
+Components:
+• Icons          -> Lucide React (Check, ArrowDown, Play, etc.)
+• Animations     -> Framer Motion (<motion.div>) + GSAP (ScrollTrigger)
+
+--------------------------------------------------------------------------------
+
+10. USAGE RULES (DO / DON'T)
+--------------------------------------------------------------------------------
+DO:
+• DO use 2.5rem+ border radius for all container elements.
+• DO use italics for section headings to maintain brand voice.
+• DO use 'text-white/40' for non-essential labels to reduce visual noise.
+
+DON'T:
+• DON'T use sharp corners (0px radius) on cards or buttons.
+• DON'T use solid flat colors for primary backgrounds; use defined gradients.
+• DON'T use default sans-serif fonts; always use 'Inter'.
+
+--------------------------------------------------------------------------------
+
+11. SCALABILITY & HANDOFF NOTES
+--------------------------------------------------------------------------------
+• Extending: New sections should follow the "Dark Gradient" or "Clean White"
+  alternating pattern to maintain rhythm.
+• Icons: Add new icons from 'lucide-react' library only.
+• Animation: Revert to GSAP for scroll-linked animations and Framer Motion for
+  simple state changes (hover/tap).

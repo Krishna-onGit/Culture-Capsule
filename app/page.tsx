@@ -4,7 +4,7 @@ import Projects from "./components/Projects";
 import Solutions from "./components/Solutions";
 import About from "./components/About";
 import Stats from "./components/Stats";
-import Plans from "./components/Plans";
+import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -18,7 +18,7 @@ export default function Home() {
       <Solutions />
       <About />
       <Stats />
-      <Plans />
+      <Pricing />
       <FAQ />
       <Contact />
       <Footer />

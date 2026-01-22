@@ -38,7 +38,7 @@ const Contact = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} id="contact" className="py-32 contact-gradient text-white overflow-hidden relative">
+        <section ref={sectionRef} id="contact" className="pt-20 pb-0 contact-gradient text-white overflow-hidden relative">
             {/* Mesh Background */}
             <div className="absolute inset-0 opacity-30 pointer-events-none">
                 <div ref={blob1Ref} className="absolute top-1/4 -right-24 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[120px]" />
@@ -46,7 +46,7 @@ const Contact = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-                <div className="max-w-3xl mx-auto mb-20 space-y-8">
+                <div className="max-w-3xl mx-auto mb-10 space-y-8">
                     <motion.h2
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -67,7 +67,7 @@ const Contact = () => {
                     </motion.p>
                 </div>
 
-                <div className="max-w-2xl mx-auto mb-24">
+                <div className="max-w-2xl mx-auto mb-10">
                     <form className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {['Name', 'Email'].map((placeholder, i) => (
                             <motion.div
@@ -112,7 +112,7 @@ const Contact = () => {
                 </div>
 
                 {/* Social Bridge */}
-                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 border-t border-white/5 pt-16">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 border-t border-white/5 pt-10 pb-10">
                     {[
                         { Icon: Instagram, name: 'Instagram' },
                         { Icon: Twitter, name: 'Twitter' },

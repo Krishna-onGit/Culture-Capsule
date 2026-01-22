@@ -79,7 +79,7 @@ const Stats = () => {
                         className="p-16 rounded-[4rem] results-gradient wavy-lines relative overflow-hidden flex flex-col justify-between min-h-[500px] shadow-2xl"
                     >
                         <div className="relative z-10">
-                            <h2 className="text-6xl font-black text-white italic tracking-tighter leading-none mb-8">
+                            <h2 className="text-6xl font-bold text-white italic tracking-tighter leading-none mb-8">
                                 Results <br />
                                 <span className="text-white/40">driven</span>
                             </h2>

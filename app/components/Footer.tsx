@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
     return (
-        <footer className="py-24 footer-gradient text-white">
+        <footer className="py-10 footer-gradient text-white">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
                     <motion.div

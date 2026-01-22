@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-montserrat), sans-serif;
 }
 
 :root {
@@ -57,8 +57,8 @@ html.lenis body {
   background: linear-gradient(135deg, #1a0b2e 0%, #7B3FF2 50%, #D946EF 100%);
 }
 
-.plans-gradient {
-  background: linear-gradient(180deg, #0a0118 0%, #1a0b2e 30%, #0a0118 100%);
+.pricing-section-bg {
+  background: linear-gradient(180deg, #0a0118 0%, #0066FF 40%, #D946EF 100%);
 }
 
 .contact-gradient {

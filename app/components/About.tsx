@@ -53,7 +53,7 @@ const About = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-24 about-gradient overflow-hidden" id="about">
+        <section ref={sectionRef} className="py-24 bg-white overflow-hidden" id="about">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Visual Side */}
@@ -103,27 +103,27 @@ const About = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="space-y-10"
                     >
-                        <h2 className="text-5xl lg:text-6xl font-black italic tracking-tighter text-white leading-[0.9]">
+                        <h2 className="text-5xl lg:text-6xl font-bold italic tracking-tighter text-black leading-[0.9]">
                             Designing <br />
-                            <span className="text-white/50">for humans</span>
+                            <span className="text-gray-400">for humans</span>
                         </h2>
-                        <p className="text-2xl text-white/80 font-medium leading-relaxed">
+                        <p className="text-2xl text-gray-600 font-medium leading-relaxed">
                             We focus on creating experiences that are intuitive, beautiful, and highly effective. Our team of experts works at the intersection of psychology and design to build products people love to use.
                         </p>
-                        <div className="grid grid-cols-2 gap-12 pt-8 border-t border-white/20 stats-container">
+                        <div className="grid grid-cols-2 gap-12 pt-8 border-t border-gray-200 stats-container">
                             <div className="stat-item">
-                                <p className="text-4xl font-black text-white mb-2">10+</p>
-                                <p className="text-white/60 font-bold uppercase tracking-widest text-xs">Years Experience</p>
+                                <p className="text-4xl font-black text-black mb-2">10+</p>
+                                <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">Years Experience</p>
                             </div>
                             <div className="stat-item">
-                                <p className="text-4xl font-black text-white mb-2">250+</p>
-                                <p className="text-white/60 font-bold uppercase tracking-widest text-xs">Happy Clients</p>
+                                <p className="text-4xl font-black text-black mb-2">250+</p>
+                                <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">Happy Clients</p>
                             </div>
                         </div>
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold hover:bg-white/20 transition-all shadow-lg"
+                            className="px-8 py-4 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-all shadow-lg"
                         >
                             Learn more about us
                         </motion.button>
