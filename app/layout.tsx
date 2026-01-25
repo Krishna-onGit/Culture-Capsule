@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
-import { Dancing_Script } from "next/font/google";
+import { Dancing_Script, Space_Grotesk, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const montserrat = localFont({
   src: [
@@ -73,12 +83,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${montserrat.variable} ${dancingScript.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${inter.variable} ${montserrat.variable} ${dancingScript.variable}`}>
       <body
-        className="font-sans antialiased"
+        className="font-sans antialiased bg-white text-black"
         suppressHydrationWarning
       >
         <SmoothScroll>
+          {/* Global Texture Overlay */}
+          <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] pointer-events-none mix-blend-multiply z-[9999]"></div>
           {children}
         </SmoothScroll>
       </body>

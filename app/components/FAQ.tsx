@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-
 const faqs = [
     {
         question: "How long does a typical project take?",
@@ -32,42 +31,33 @@ const FAQ = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-24 bg-white" id="faq">
+        <section className="py-24 bg-white border-t-4 border-black" id="faq">
             <div className="max-w-4xl mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-5xl font-black italic tracking-tighter mb-4">FAQ</h2>
-                    <p className="text-gray-500 font-medium">Everything you need to know about working with us.</p>
-                </motion.div>
+                <div className="text-center mb-16 space-y-4">
+                    <div className="inline-block bg-[#FFE600] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <span className="text-sm font-black uppercase tracking-widest text-black">Common Queries</span>
+                    </div>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">Frequently <br /> <span className="text-[#3D5CFF]">Asked.</span></h2>
+                </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                     {faqs.map((faq, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`border rounded-[2.5rem] overflow-hidden transition-all duration-300 ${openIndex === index
-                                ? 'bg-[linear-gradient(90deg,rgba(123,63,242,0.05),rgba(217,70,239,0.05))] border-purple-200 shadow-md'
-                                : 'bg-white border-gray-100 shadow-sm hover:shadow-md'}`}
+                            className={`border-4 border-black transition-all duration-300 ${openIndex === index
+                                ? 'bg-[#FF3D81] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
+                                : 'bg-white hover:bg-gray-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]'}`}
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className={`w-full px-10 py-8 flex justify-between items-center transition-colors ${openIndex !== index ? 'hover:bg-gray-50' : ''}`}
+                                className="w-full px-8 py-6 flex justify-between items-center"
                             >
-                                <span className="text-xl font-bold text-gray-900 text-left pr-8">{faq.question}</span>
-                                <motion.div
-                                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                                    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${openIndex === index ? 'bg-black text-white border-black shadow-lg' : 'border-gray-100 text-gray-400'}`}
-                                >
-                                    {openIndex === index ? <Minus size={18} /> : <Plus size={18} />}
-                                </motion.div>
+                                <span className={`text-xl md:text-2xl font-black uppercase tracking-tighter text-left pr-8 ${openIndex === index ? 'text-white' : 'text-black'}`}>
+                                    {faq.question}
+                                </span>
+                                <div className={`w-12 h-12 flex-shrink-0 border-4 border-black flex items-center justify-center transition-all ${openIndex === index ? 'bg-white text-black' : 'bg-[#FFE600] text-black'}`}>
+                                    {openIndex === index ? <Minus size={24} strokeWidth={4} /> : <Plus size={24} strokeWidth={4} />}
+                                </div>
                             </button>
 
                             <AnimatePresence>
@@ -76,15 +66,15 @@ const FAQ = () => {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
                                     >
-                                        <div className="px-10 pb-10 text-gray-500 text-lg font-medium leading-relaxed">
+                                        <div className="px-8 pb-8 text-white text-xl font-bold leading-tight border-t-4 border-black pt-6">
                                             {faq.answer}
                                         </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

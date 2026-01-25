@@ -7,114 +7,107 @@ import { motion } from 'framer-motion';
 const plans = [
     {
         name: "Starter",
-        price: "$15",
-        period: "/ mo",
-        description: "For individuals & crypto finances.",
-        features: ["Up to 5 wallets", "Basic portfolio tracking", "Transaction history", "Support 24/7"],
-        buttonText: "UPGRADE",
-        highlight: false
+        price: "$15K",
+        period: "/ project",
+        description: "For startups & founders seeking edge.",
+        features: ["Brand Identity", "Single Landing Page", "Strategy Session", "Standard Support"],
+        buttonText: "BUY PACK",
+        bg: "bg-white",
+        text: "text-black"
     },
     {
         name: "Growth",
-        price: "$39",
-        period: "/ mo",
-        description: "For traders scaling operations.",
-        features: ["Everything in Start", "Unlimited wallets", "Advanced insights", "Multi-chain support", "Priority support"],
-        buttonText: "UPGRADE",
-        highlight: true,
-        tag: "best choice"
+        price: "$39K",
+        period: "/ project",
+        description: "For scaling brands ready for impact.",
+        features: ["Full Brand System", "Custom Web & App", "SEO & Content Strategy", "Priority Support", "Motion Design"],
+        buttonText: "SCALE NOW",
+        bg: "bg-[#FFE600]",
+        text: "text-black",
+        tag: "BEST VALUE"
     },
     {
         name: "Enterprise",
         price: "Custom",
         period: "",
-        description: "For web3 builders & teams.",
-        features: ["Everything in Growth", "Dedicated account manager", "API access", "Multi-user permissions", "Compliance reports"],
-        buttonText: "CONTACT",
-        highlight: false
+        description: "For market leaders & giants.",
+        features: ["White Glove Service", "Full Market Domination", "Multi-platform Eco", "Dedicated Studio Team", "Global Rollout"],
+        buttonText: "CONTACT STUDIO",
+        bg: "bg-[#3D5CFF]",
+        text: "text-white"
     }
 ];
 
 const Pricing = () => {
     return (
-        <section className="min-h-screen flex flex-col justify-center py-10 relative overflow-hidden bg-white" id="pricing">
-            <div className="container mx-auto px-4 z-10">
-                <div className="text-center mb-10">
-                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-3 block">Pricing</span>
-                    <h2 className="text-4xl md:text-5xl font-bold italic text-black">Plans with purpose</h2>
+        <section className="py-24 bg-white border-t-4 border-black" id="pricing">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="text-center mb-20 space-y-4">
+                    <div className="inline-block bg-black text-white border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_#FF3D81] hover:-translate-y-1 hover:shadow-[4px_5px_0px_0px_#FF3D81] transition-all cursor-default">
+                        <span className="text-sm font-black uppercase tracking-widest">Pricing</span>
+                    </div>
+                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">Investment <br /> <span className="text-[#3D5CFF]">Structure.</span></h2>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 lg:items-stretch max-w-6xl mx-auto"
-                >
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch text-black">
                     {plans.map((plan, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className={`
-                                relative p-6 md:p-8 rounded-[1.5rem] flex flex-col justify-between
-                                border w-full max-w-sm
-                                ${plan.highlight
-                                    ? 'results-gradient lg:scale-110 z-10 shadow-2xl shadow-black/50 border-none'
-                                    : 'bg-[#0F0418] border-white/5 lg:scale-100'
-                                }
-                            `}
+                            className={`brutal-card flex flex-col justify-between p-10 h-full relative group shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all ${plan.bg === 'bg-[#FFE600]' ? 'bg-[#FFE600] text-black' : plan.bg === 'bg-[#3D5CFF]' ? 'bg-[#3D5CFF] text-white' : 'bg-white text-black'}`}
+                            style={plan.bg === 'bg-[#3D5CFF]' ? { backgroundColor: '#3D5CFF', color: 'white' } : plan.bg === 'bg-[#FFE600]' ? { backgroundColor: '#FFE600', color: 'black' } : { backgroundColor: '#FFFFFF', color: 'black' }}
                         >
                             {plan.tag && (
-                                <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full bg-green-400 text-black text-[10px] font-bold uppercase tracking-wide">
+                                <div className="absolute -top-6 -right-6 bg-[#FF3D81] text-white border-4 border-black p-4 rotate-12 font-black uppercase tracking-widest shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] animate-bounce-slow z-20 cursor-default hover:-translate-y-1 hover:rotate-0 transition-all duration-300">
                                     {plan.tag}
                                 </div>
                             )}
 
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
-                                <p className="text-white/60 text-xs mb-6 min-h-[32px] leading-relaxed">{plan.description}</p>
+                                <h3 className={`text-4xl font-black uppercase tracking-tighter mb-4 border-b-4 pb-4 leading-none ${plan.bg === 'bg-[#3D5CFF]' ? 'border-white text-white' : 'border-black text-black'}`}>{plan.name}</h3>
+                                <p className={`text-lg font-bold mb-8 leading-tight ${plan.bg === 'bg-[#3D5CFF]' ? 'text-white' : 'text-black'}`}>{plan.description}</p>
 
-                                <ul className="space-y-3 mb-6">
+                                <ul className="space-y-4 mb-12">
                                     {plan.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-xs text-white/80">
-                                            <Check className={`w-4 h-4 shrink-0 ${plan.highlight ? 'text-green-400' : 'text-white'}`} />
+                                        <li key={idx} className={`flex items-center gap-3 font-black uppercase text-sm border-b-2 pb-2 ${plan.bg === 'bg-[#3D5CFF]' ? 'border-white/30 text-white' : 'border-black/10 text-black'}`}>
+                                            <div className="w-5 h-5 bg-black border-2 border-white flex items-center justify-center shrink-0">
+                                                <Check className="w-3 h-3 text-white" strokeWidth={4} />
+                                            </div>
                                             <span>{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
-                            <div className="mt-auto pt-6 border-t border-white/10">
-                                <div className="flex items-end gap-2 mb-4">
-                                    <span className="text-3xl font-bold text-white">{plan.price}</span>
-                                    {plan.period && <span className="text-white/40 text-xs mb-1">{plan.period}</span>}
-                                    {plan.highlight && plan.price !== "Custom" && (
-                                        <span className="ml-auto text-green-400 text-[10px] font-medium uppercase tracking-wider">billed yearly</span>
-                                    )}
+                            <div className="space-y-6">
+                                <div className={`flex items-end gap-2 ${plan.bg === 'bg-[#3D5CFF]' ? 'text-white' : 'text-black'}`}>
+                                    <span className="text-6xl font-black tracking-tighter uppercase leading-none">{plan.price}</span>
+                                    <span className="font-black uppercase text-sm mb-1">{plan.period}</span>
                                 </div>
 
                                 <button
                                     className={`
-                                        w-full py-3 rounded-lg font-bold text-[10px] uppercase tracking-[0.1em] transition-all duration-300
-                                        ${plan.highlight
-                                            ? 'bg-white text-black hover:bg-white/90 shadow-lg shadow-white/10'
-                                            : 'border border-white/20 text-white hover:bg-white/10'
-                                        }
+                                        w-full py-5 border-4 border-black font-black uppercase tracking-widest text-xl transition-all
+                                        shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1
+                                        ${plan.bg === 'bg-[#3D5CFF]' ? 'bg-[#FFE600] text-black hover:bg-white' : 'bg-black text-white hover:bg-white hover:text-black'}
                                     `}
+                                    style={plan.bg === 'bg-[#3D5CFF]' ? { backgroundColor: '#FFE600', color: 'black' } : {}}
                                 >
                                     {plan.buttonText}
                                 </button>
-
-                                <p className="text-center text-white/30 text-[9px] mt-3 uppercase tracking-widest">
-                                    {index === 0 ? '7 days free' : index === 1 ? '7 days free' : 'Individual'}
-                                </p>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
+            <style jsx>{`
+                @keyframes bounce-slow {
+                    0%, 100% { transform: translateY(0) rotate(12deg); }
+                    50% { transform: translateY(-10px) rotate(12deg); }
+                }
+                .animate-bounce-slow {
+                    animation: bounce-slow 3s infinite ease-in-out;
+                }
+            `}</style>
         </section>
     );
 };

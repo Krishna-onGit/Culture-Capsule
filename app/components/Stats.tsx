@@ -1,121 +1,80 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, TrendingUp, Users, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
-
 
 const statsData = [
-    { value: 10, suffix: "m+", label: "Capital raised from clients we’ve worked with." },
-    { value: 80, suffix: "%", label: "Client satisfaction across all creative projects." },
-    { value: 24, suffix: "/7", label: "Dedicated support and strategic consulting." }
+    { value: "10M+", label: "Capital Raised", sub: "For our strategic partners", icon: TrendingUp, color: "#FFE600" },
+    { value: "80%", label: "Satisfaction", sub: "Across all creative ventures", icon: Users, color: "#FF3D81" },
+    { value: "24/7", label: "Consulting", sub: "Dedicated high-impact support", icon: ShieldCheck, color: "#3D5CFF" }
 ];
 
 const Stats = () => {
-    const sectionRef = useRef(null);
-    const darkCardRef = useRef(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Background card zoom in
-            gsap.from(darkCardRef.current, {
-                scale: 0.8,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: darkCardRef.current,
-                    start: 'top 85%',
-                }
-            });
-
-            // Stats counter animation
-            statsData.forEach((stat, i) => {
-                const obj = { val: 0 };
-                gsap.to(obj, {
-                    val: stat.value,
-                    duration: 2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: `.stat-card-${i}`,
-                        start: 'top 80%',
-                    },
-                    onUpdate: () => {
-                        const el = document.querySelector(`.stat-number-${i}`);
-                        if (el) el.textContent = Math.floor(obj.val).toString();
-                    }
-                });
-            });
-
-            // Stagger stats cards
-            gsap.fromTo('.stat-card',
-                { y: 40, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    stagger: 0.2,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.stats-list',
-                        start: 'top 90%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section ref={sectionRef} className="py-24 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section className="py-24 bg-white border-t-4 border-black">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                     {/* Main Branding Card */}
-                    <div
-                        ref={darkCardRef}
-                        className="p-16 rounded-[4rem] results-gradient wavy-lines relative overflow-hidden flex flex-col justify-between min-h-[500px] shadow-2xl"
-                    >
-                        <div className="relative z-10">
-                            <h2 className="text-6xl font-bold text-white italic tracking-tighter leading-none mb-8">
-                                Results <br />
-                                <span className="text-white/40">driven</span>
-                            </h2>
+                    <div className="lg:col-span-12 mb-8">
+                        <div className="inline-block bg-[#3D5CFF] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
+                            <span className="text-sm font-black uppercase text-white tracking-widest">The Impact</span>
                         </div>
-                        <div className="relative z-10 max-w-xs">
-                            <p className="text-white/60 text-lg font-medium leading-relaxed">
-                                We believe that great design should not only look good but also deliver tangible results for your business.
-                            </p>
-                        </div>
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32" />
+                        <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+                            Proven <br /> <span className="text-[#FF3D81]">Authority.</span>
+                        </h2>
                     </div>
 
-                    {/* Metrics List */}
-                    <div className="flex flex-col gap-6 stats-list">
-                        {statsData.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                whileHover={{ x: 10, backgroundColor: "#fff", borderColor: "#eee" }}
-                                className={`stat-card stat-card-${index} p-10 rounded-[3rem] bg-[#F8F9FA] border border-transparent group flex justify-between items-center shadow-sm hover:shadow-xl transition-shadow`}
+                    {/* Metric Cards - Asymmetrical Grid */}
+                    <div className="lg:col-span-5 flex flex-col gap-8">
+                        <div className="brutal-card bg-[#FFE600] p-10 flex flex-col justify-between h-80 -rotate-2" style={{ backgroundColor: '#FFE600' }}>
+                            <div className="flex justify-between items-start">
+                                <TrendingUp size={48} strokeWidth={3} className="text-black" />
+                                <ArrowUpRight size={32} strokeWidth={3} className="text-black" />
+                            </div>
+                            <div className="text-black">
+                                <h3 className="text-7xl font-black tracking-tighter uppercase leading-none text-black">{statsData[0].value}</h3>
+                                <p className="text-2xl font-black uppercase mt-2 text-black">{statsData[0].label}</p>
+                                <p className="text-sm font-bold text-black/70 mt-1">{statsData[0].sub}</p>
+                            </div>
+                        </div>
+                    </div>
 
-                            >
-                                <div className="max-w-[70%]">
-                                    <p className="text-5xl lg:text-6xl font-black mb-2">
-                                        <span className={`stat-number-${index} text-gradient`}>0</span>
-                                        <span className="text-gradient">{stat.suffix}</span>
-                                    </p>
-                                    <p className="text-gray-500 font-medium leading-tight text-lg">{stat.label}</p>
+                    <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="brutal-card bg-white p-10 flex flex-col justify-between h-full rotate-2" style={{ backgroundColor: '#FFFFFF' }}>
+                            <div className="flex justify-between items-start mb-12">
+                                <Users size={48} strokeWidth={3} className="text-[#FF3D81]" />
+                                <div className="w-12 h-12 border-4 border-black rounded-full flex items-center justify-center">
+                                    <span className="font-black text-black">ST</span>
                                 </div>
-                                <motion.div
-                                    whileHover={{ rotate: 45, scale: 1.1 }}
-                                    className="w-16 h-16 rounded-full bg-black/5 backdrop-blur-md border border-black/10 text-black flex items-center justify-center shadow-lg hover:bg-black/10 transition-all"
-                                >
-                                    <ArrowUpRight size={28} />
-                                </motion.div>
-                            </motion.div>
-                        ))}
+                            </div>
+                            <div className="text-black">
+                                <h3 className="text-6xl font-black tracking-tighter uppercase leading-none text-black">{statsData[1].value}</h3>
+                                <p className="text-xl font-black uppercase mt-2 text-black">{statsData[1].label}</p>
+                                <p className="text-sm font-bold text-black/70 mt-1">{statsData[1].sub}</p>
+                            </div>
+                        </div>
+
+                        <div className="brutal-card bg-[#3D5CFF] text-white p-10 flex flex-col justify-between h-full -rotate-1" style={{ backgroundColor: '#3D5CFF' }}>
+                            <div className="flex justify-between items-start mb-12">
+                                <ShieldCheck size={48} strokeWidth={3} className="text-[#FFE600]" />
+                                <div className="w-12 h-12 bg-black border-4 border-white flex items-center justify-center">
+                                    <span className="font-black text-white">HI</span>
+                                </div>
+                            </div>
+                            <div className="text-white">
+                                <h3 className="text-6xl font-black tracking-tighter uppercase leading-none text-white">{statsData[2].value}</h3>
+                                <p className="text-xl font-black uppercase mt-2 text-white">{statsData[2].label}</p>
+                                <p className="text-sm font-bold text-white/80 mt-1 tracking-tight">{statsData[2].sub}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-12 mt-8">
+                        <div className="p-8 border-4 border-black bg-black text-[#FFE600] flex flex-col md:flex-row justify-between items-center gap-6">
+                            <p className="text-2xl font-black uppercase tracking-tight text-center md:text-left">Ready to see these numbers on your dashboard?</p>
+                            <button className="brutal-btn bg-[#FFE600] text-black w-full md:w-auto">Start Today</button>
+                        </div>
                     </div>
                 </div>
             </div>

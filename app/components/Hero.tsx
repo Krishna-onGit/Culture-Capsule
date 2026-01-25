@@ -1,138 +1,142 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import { ArrowDown } from 'lucide-react';
+import React from 'react';
+import { Star, Zap, Globe, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
-
 
 const Hero = () => {
-    const containerRef = useRef(null);
-    const titleRef = useRef(null);
-    const orb1Ref = useRef(null);
-    const orb2Ref = useRef(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Split text-like reveal for title
-            gsap.from('.hero-title-part', {
-                y: 100,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.1,
-                ease: 'power4.out',
-                delay: 0.5
-            });
-
-            // Parallax for orbs
-            gsap.to(orb1Ref.current, {
-                yPercent: -50,
-                xPercent: 20,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1,
-                },
-            });
-
-            gsap.to(orb2Ref.current, {
-                yPercent: -30,
-                xPercent: -10,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                },
-            });
-
-            // Continuous floating animation for orbs
-            gsap.to('.orb-float', {
-                y: -30,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: 'power1.inOut',
-                stagger: 1
-            });
-        }, containerRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden hero-gradient">
-            {/* Overlay for noise texture */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none mix-blend-overlay"></div>
+        <section className="w-full bg-[#FFD700] border-b-4 border-black pt-32 pb-24 relative overflow-hidden">
+            {/* Noise texture overlay */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] pointer-events-none mix-blend-multiply"></div>
 
-            <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
-                <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="mb-4"
-                >
-                    <span className="text-sm font-bold uppercase tracking-[0.3em] text-white/60">Creative Agency</span>
-                </motion.div>
+            <div className="max-w-[1200px] mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-20 items-start relative z-10">
 
-                <h1 ref={titleRef} className="text-[clamp(3rem,8vw,7rem)] font-bold tracking-tighter leading-[0.9] text-white">
-                    <div className="overflow-hidden">
-                        <span className="inline-block hero-title-part">We Turn Culture</span>
-                    </div>
-                    <div className="overflow-hidden">
-                        <span className="inline-block hero-title-part text-white/90">
-                            Into <span className="font-[family-name:var(--font-script)] font-bold text-white">Growth</span>.
-                        </span>
-                    </div>
-                </h1>
-
-                <motion.p
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="max-w-3xl mx-auto text-xl md:text-2xl text-white/80 font-medium leading-relaxed"
-                >
-                    We help modern brands earn attention, influence conversations, and scale fast.
-                </motion.p>
-
-                <motion.div
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 1.4, type: "spring" }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-6"
-                >
-                    <motion.button
-                        whileHover={{ x: 5 }}
-                        className="flex items-center gap-2 font-bold text-white group"
+                {/* LEFT SIDE: TEXT CONTENT */}
+                <div className="flex flex-col justify-start gap-8 text-left">
+                    <motion.div
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        className="inline-block self-start border-4 border-black bg-white px-4 py-2 shadow-[4px_4px_0px_0px_black]"
                     >
-                        Our work
-                        <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-sm group-hover:bg-white group-hover:text-black transition-all">
-                            <ArrowDown size={16} />
+                        <span className="text-sm font-black uppercase tracking-widest text-black">Creative Agency 2.0</span>
+                    </motion.div>
+
+                    <div className="space-y-6 relative">
+                        <h1 className="text-6xl md:text-7xl font-black uppercase leading-[0.9] text-black tracking-tighter">
+                            WE TURN <br />
+                            <span className="bg-white border-4 border-black px-3 inline-block my-2 shadow-[6px_6px_0px_black]">
+                                CULTURE
+                            </span>
+                            <br />
+                            INTO <br />
+                            <span className="relative">
+                                GROWTH<span className="text-[#FF3D81]">.</span>
+                                {/* Small Doodle Sticker */}
+                                <motion.div
+                                    animate={{ rotate: [15, -15, 15], scale: [1, 1.1, 1] }}
+                                    transition={{ duration: 3, repeat: Infinity }}
+                                    className="absolute -right-12 -top-4 text-[#FF3D81] hidden lg:block"
+                                >
+                                    <Zap size={40} className="fill-[#FF3D81]" />
+                                </motion.div>
+                            </span>
+                        </h1>
+
+                        <p className="text-xl font-bold max-w-md text-black leading-tight border-l-4 border-black pl-5">
+                            We help modern brands earn attention, influence conversations, and scale fast through bold creative strategy.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-6 mt-6">
+                        <button className="bg-black text-white border-4 border-black px-10 py-5 text-lg font-black uppercase tracking-widest shadow-[8px_8px_0px_0px_#FF3D81] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                            Start Project
+                        </button>
+                        <button className="bg-white text-black border-4 border-black px-10 py-5 text-lg font-black uppercase tracking-widest shadow-[8px_8px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                            Our Work
+                        </button>
+                    </div>
+                </div>
+
+                {/* RIGHT SIDE: THE HERO POSTER COMPOSITION */}
+                <div className="relative hidden md:block">
+                    {/* The Main Poster Frame - Added Funk Tilt */}
+                    <div className="relative border-4 border-black bg-white shadow-[10px_10px_0px_black] p-6 z-10 rotate-[-1deg]">
+                        <div className="relative aspect-[3/4] overflow-hidden border-4 border-black bg-gray-100 -rotate-1">
+                            <img
+                                src="/hero_lab.jpg"
+                                alt="Studio Lab"
+                                className="object-cover w-full h-full"
+                            />
                         </div>
-                    </motion.button>
-                </motion.div>
+                        <div className="mt-6">
+                            <h3 className="text-2xl font-black uppercase text-black leading-none">The Narrative Lab</h3>
+                            <p className="text-sm font-bold mt-2 text-black/70 uppercase tracking-widest">Culture Capsule Studio © 2025</p>
+                        </div>
+
+                        {/* Sticker 1: Award Winning (Lower and more inside) */}
+                        <motion.div
+                            initial={{ rotate: 10, scale: 0.8, opacity: 0 }}
+                            animate={{ rotate: -8, scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="absolute top-6 right-10 w-[200px] border-4 border-black bg-[#3D5CFF] text-white shadow-[6px_6px_0px_black] p-5 z-20 cursor-default hover:-translate-y-1 hover:rotate-0 transition-all duration-300"
+                        >
+                            <div className="bg-white p-2 border-2 border-black mb-3 inline-block">
+                                <Star className="text-black fill-black" size={20} />
+                            </div>
+                            <h3 className="text-sm font-black uppercase leading-none">Award Winning</h3>
+                            <p className="text-[10px] font-bold mt-1 text-white/90">Best Digital Agency 2025</p>
+                        </motion.div>
+
+                        {/* Sticker 2: Fast Delivery (Lower left position) */}
+                        <motion.div
+                            initial={{ rotate: -10, scale: 0.8, opacity: 0 }}
+                            animate={{ rotate: 6, scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="absolute bottom-32 -left-10 w-[200px] border-4 border-black bg-[#FF3D81] shadow-[6px_6px_0px_black] p-5 z-30 cursor-default hover:-translate-y-1 hover:rotate-0 transition-all duration-300"
+                        >
+                            <div className="bg-white p-2 border-2 border-black mb-3 flex justify-between items-center text-black">
+                                <Zap className="fill-black" size={20} />
+                                <span className="text-lg font-black italic">99%</span>
+                            </div>
+                            <h3 className="text-sm font-black uppercase text-white leading-tight">Fast Delivery</h3>
+                            <p className="text-[10px] font-bold mt-1 text-white/80">Speed is our superpower</p>
+                        </motion.div>
+                    </div>
+
+                    {/* Decorative element behind the poster */}
+                    <div className="absolute top-8 left-8 w-full h-full border-4 border-black -z-10 bg-black/5"></div>
+                </div>
             </div>
 
-            {/* Decorative Orbs */}
-            <div
-                ref={orb1Ref}
-                className="absolute top-20 left-10 w-64 h-64 bg-blue-500/30 rounded-full blur-[100px] orb-float"
-            />
-            <div
-                ref={orb2Ref}
-                className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/30 rounded-full blur-[120px] orb-float"
-            />
+            {/* MARQUEE BANNER */}
+            <div className="absolute bottom-0 w-full bg-black py-4 border-t-4 border-black overflow-hidden whitespace-nowrap">
+                <div className="flex animate-marquee">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                        <span key={i} className="text-white text-xl md:text-2xl font-black uppercase mx-8 inline-flex items-center gap-4">
+                            <Target size={24} className="text-[#FFE600]" />
+                            Strategy First
+                            <Globe size={24} className="text-[#FF3D81]" />
+                            Global Vision
+                            <Zap size={24} className="text-[#3D5CFF]" />
+                            High Impact
+                        </span>
+                    ))}
+                </div>
+            </div>
 
-
-
-            {/* Bottom Fade to White */}
-            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-white z-20 pointer-events-none" />
+            <style jsx>{`
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee {
+                    display: inline-flex;
+                    animation: marquee 30s linear infinite;
+                }
+            `}</style>
         </section>
     );
 };
 
 export default Hero;
-
