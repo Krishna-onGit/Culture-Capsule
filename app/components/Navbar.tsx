@@ -20,7 +20,8 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Work', href: '#work' },
     { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
+    { name: 'Team', href: '#team' },
+    { name: 'Case Studies', href: '#results' },
     { name: 'Contact', href: '#contact' },
   ];
 

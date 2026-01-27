@@ -50,17 +50,24 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Contact Info */}
+                    {/* Contact Info / Newsletter */}
                     <div className="lg:col-span-4 bg-white text-black border-4 border-black p-8 shadow-[8px_8px_0px_0px_#FFE600] rotate-2">
-                        <h4 className="font-black uppercase tracking-widest text-sm mb-8 border-b-4 border-black pb-4">Drop a Line</h4>
-                        <div className="space-y-8">
-                            <div>
-                                <p className="text-[#3D5CFF] text-xs font-black uppercase tracking-widest mb-2">Electronic Mail</p>
-                                <p className="text-2xl font-black break-all">HELLO@CULTURE-CAPSULE.STUDIO</p>
+                        <h4 className="font-black uppercase tracking-widest text-sm mb-6 border-b-4 border-black pb-4">Stay Optimized</h4>
+                        <div className="space-y-6">
+                            <p className="font-bold text-sm uppercase leading-tight">Join 5,000+ marketers receiving our weekly growth playbooks.</p>
+                            <div className="flex flex-col gap-3">
+                                <input
+                                    type="email"
+                                    placeholder="YOUR@EMAIL.COM"
+                                    className="w-full bg-[#f5f5f5] border-2 border-black p-3 font-black uppercase text-xs focus:bg-[#FFE600] outline-none"
+                                />
+                                <button className="bg-black text-white p-3 border-2 border-black font-black uppercase text-xs tracking-widest hover:bg-[#FF3D81] transition-colors">
+                                    Join The Lab
+                                </button>
                             </div>
-                            <div>
-                                <p className="text-[#FF3D81] text-xs font-black uppercase tracking-widest mb-2">Direct Signal</p>
-                                <p className="text-2xl font-black">+91 999 999 9999</p>
+                            <div className="pt-4 border-t-2 border-black/10">
+                                <p className="text-[#3D5CFF] text-[10px] font-black uppercase tracking-widest mb-1">Availability</p>
+                                <p className="text-sm font-black uppercase">Next Strategy Calls: <span className="text-[#FF3D81]">THIS WEEK</span></p>
                             </div>
                         </div>
                     </div>

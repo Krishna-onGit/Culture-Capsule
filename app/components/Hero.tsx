@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Star, Zap, Globe, Target } from 'lucide-react';
+import { Star, Zap, Globe, Target, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
@@ -19,19 +19,19 @@ const Hero = () => {
                         animate={{ y: 0, opacity: 1 }}
                         className="inline-block self-start border-4 border-black bg-white px-4 py-2 shadow-[4px_4px_0px_0px_black]"
                     >
-                        <span className="text-sm font-black uppercase tracking-widest text-black">Creative Agency 2.0</span>
+                        <span className="text-sm font-black uppercase tracking-widest text-black">Growth Agency 2.0</span>
                     </motion.div>
 
                     <div className="space-y-6 relative">
                         <h1 className="text-6xl md:text-7xl font-black uppercase leading-[0.9] text-black tracking-tighter">
-                            WE TURN <br />
+                            WE HELP <br />
                             <span className="bg-white border-4 border-black px-3 inline-block my-2 shadow-[6px_6px_0px_black]">
-                                CULTURE
+                                D2C & STARTUPS
                             </span>
                             <br />
-                            INTO <br />
+                            SCALE <br />
                             <span className="relative">
-                                GROWTH<span className="text-[#FF3D81]">.</span>
+                                PROFITABLY<span className="text-[#FF3D81]">.</span>
                                 {/* Small Doodle Sticker */}
                                 <motion.div
                                     animate={{ rotate: [15, -15, 15], scale: [1, 1.1, 1] }}
@@ -44,16 +44,39 @@ const Hero = () => {
                         </h1>
 
                         <p className="text-xl font-bold max-w-md text-black leading-tight border-l-4 border-black pl-5">
-                            We help modern brands earn attention, influence conversations, and scale fast through bold creative strategy.
+                            We turn attention into profitable revenue for modern brands worldwide. Strategy first. Scale always.
+                        </p>
+
+                        {/* Service Bullets */}
+                        <div className="flex flex-col gap-4 pt-2">
+                            {[
+                                { bold: "Paid Ads", text: "that Scale Profitably" },
+                                { bold: "Social Content", text: "that Converts" },
+                                { bold: "Funnels", text: "that Increase Leads" }
+                            ].map((bullet, i) => (
+                                <div key={i} className="flex items-center gap-4 group">
+                                    <div className="w-6 h-6 bg-black flex items-center justify-center group-hover:bg-[#FF3D81] transition-colors">
+                                        <Check size={16} className="text-[#FFE600] group-hover:text-white" strokeWidth={4} />
+                                    </div>
+                                    <p className="text-base font-black uppercase tracking-tight">
+                                        <span className="bg-black text-white px-2 py-0.5">{bullet.bold}</span> {bullet.text}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Trust Line */}
+                        <p className="text-xs font-black uppercase tracking-widest opacity-60">
+                            Trusted by 30+ modern brands worldwide.
                         </p>
                     </div>
 
                     <div className="flex flex-wrap gap-6 mt-6">
                         <button className="bg-black text-white border-4 border-black px-10 py-5 text-lg font-black uppercase tracking-widest shadow-[8px_8px_0px_0px_#FF3D81] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-                            Start Project
+                            Get a Free Growth Audit
                         </button>
                         <button className="bg-white text-black border-4 border-black px-10 py-5 text-lg font-black uppercase tracking-widest shadow-[8px_8px_0px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-                            Our Work
+                            View Case Studies
                         </button>
                     </div>
                 </div>

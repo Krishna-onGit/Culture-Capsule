@@ -59,7 +59,7 @@ body {
 }
 
 .brutal-card:hover {
-  @apply translate-x-[1px] translate-y-[1px];
+  @apply translate-x-[1px] translate-y-[1px] -rotate-1;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 }
 

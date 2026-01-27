@@ -42,20 +42,20 @@ const About = () => {
                     {/* Text Side - Newspaper style */}
                     <div className="bg-[#FF3D81] p-10 md:p-16 flex flex-col justify-center space-y-8 text-black">
                         <h2 className="text-6xl md:text-7xl font-black uppercase leading-[0.85] tracking-tighter">
-                            Built on <br />
-                            <span className="bg-white px-2 mt-2 inline-block border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">Pure Edge.</span>
+                            Growth <br />
+                            <span className="bg-white px-2 mt-2 inline-block border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">Optimized.</span>
                         </h2>
 
-                        <p className="text-2xl font-black leading-tight border-l-8 border-black pl-6">
-                            We don't follow trends. We set them. Our studio works at the bleeding edge of culture and technology to build brands that can't be ignored.
+                        <p className="text-2xl font-black leading-tight border-l-8 border-black pl-6 italic">
+                            &quot;Campaigns built like culture. Optimized like science.&quot;
                         </p>
 
                         <div className="space-y-4 font-bold text-lg leading-snug">
                             <p>
-                                Founded in the chaos of the digital revolution, Culture Capsule was born from a simple idea: that good design should be loud, proud, and unapologetically effective.
+                                We don&apos;t just follow trends. We set them. Our agency works at the bleeding edge of marketing and data to build brands that can&apos;t be ignored.
                             </p>
                             <p>
-                                We've spent the last decade tearing up the rulebook and helping our clients dominate their niches through strategic disruption.
+                                Strategy first. Scale always. We’ve spent years tearing up the rulebook and helping our clients dominate their niches through strategic disruption and ROI-focused execution.
                             </p>
                         </div>
 

@@ -5,9 +5,9 @@ import { ArrowUpRight, TrendingUp, Users, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const statsData = [
-    { value: "10M+", label: "Capital Raised", sub: "For our strategic partners", icon: TrendingUp, color: "#FFE600" },
-    { value: "80%", label: "Satisfaction", sub: "Across all creative ventures", icon: Users, color: "#FF3D81" },
-    { value: "24/7", label: "Consulting", sub: "Dedicated high-impact support", icon: ShieldCheck, color: "#3D5CFF" }
+    { value: "$2M+", label: "Ad Spend", sub: "Managed profitably for clients", icon: TrendingUp, color: "#FFE600" },
+    { value: "4.2x", label: "Avg. ROAS", sub: "Higher than industry standard", icon: Users, color: "#FF3D81" },
+    { value: "120+", label: "Campaigns", sub: "Launched and optimized in 2025", icon: ShieldCheck, color: "#3D5CFF" }
 ];
 
 const Stats = () => {
@@ -18,11 +18,12 @@ const Stats = () => {
                     {/* Main Branding Card */}
                     <div className="lg:col-span-12 mb-8">
                         <div className="inline-block bg-[#3D5CFF] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
-                            <span className="text-sm font-black uppercase text-white tracking-widest">The Impact</span>
+                            <span className="text-sm font-black uppercase text-white tracking-widest">Our Results</span>
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
-                            Proven <br /> <span className="text-[#FF3D81]">Authority.</span>
+                        <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">
+                            Real <br /> <span className="text-[#FF3D81]">Growth.</span>
                         </h2>
+                        <p className="text-2xl font-black uppercase tracking-widest opacity-60">Real numbers. Real growth.</p>
                     </div>
 
                     {/* Metric Cards - Asymmetrical Grid */}
@@ -44,14 +45,14 @@ const Stats = () => {
                         <div className="brutal-card bg-white p-10 flex flex-col justify-between h-full rotate-2" style={{ backgroundColor: '#FFFFFF' }}>
                             <div className="flex justify-between items-start mb-12">
                                 <Users size={48} strokeWidth={3} className="text-[#FF3D81]" />
-                                <div className="w-12 h-12 border-4 border-black rounded-full flex items-center justify-center">
-                                    <span className="font-black text-black">ST</span>
+                                <div className="w-12 h-12 border-4 border-black flex items-center justify-center">
+                                    <span className="font-black text-black">80%</span>
                                 </div>
                             </div>
                             <div className="text-black">
-                                <h3 className="text-6xl font-black tracking-tighter uppercase leading-none text-black">{statsData[1].value}</h3>
-                                <p className="text-xl font-black uppercase mt-2 text-black">{statsData[1].label}</p>
-                                <p className="text-sm font-bold text-black/70 mt-1">{statsData[1].sub}</p>
+                                <h3 className="text-6xl font-black tracking-tighter uppercase leading-none text-black">80%</h3>
+                                <p className="text-xl font-black uppercase mt-2 text-black">RETENTION</p>
+                                <p className="text-sm font-bold text-black/70 mt-1">Clients who stay and scale</p>
                             </div>
                         </div>
 

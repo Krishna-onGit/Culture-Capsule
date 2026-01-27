@@ -6,24 +6,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
     {
-        question: "How long does a typical project take?",
-        answer: "Most projects take between 2 to 6 weeks, depending on complexity and scope. Large-scale enterprise solutions may take longer."
+        question: "How fast will I see marketing results?",
+        answer: "Initial data and momentum typically build within 14-30 days. For full scale and predictable growth, we recommend a 90-day window to fully optimize the machines we build for you."
     },
     {
-        question: "What platforms do you work with?",
-        answer: "We primarily build on Framer, Webflow, and Shopify. For custom applications, we use modern stacks like Next.js and React."
+        question: "Do you run paid ads or only strategy?",
+        answer: "We do both. We believe strategy without execution is hollow, and execution without strategy is expensive. We handle the research, creative, settings, and 24/7 optimization."
     },
     {
-        question: "How do payments work?",
-        answer: "We usually work with a 50/50 split: 50% upfront to initiate the project and 50% upon completion and launch."
+        question: "What industries do you specialize in?",
+        answer: "We specialize in high-growth B2C brands, E-commerce, and SaaS. If you have a product that people need and a desire to scale, we can help."
     },
     {
-        question: "Do you offer post-launch support?",
-        answer: "Yes, we offer various maintenance plans to ensure your digital products stay healthy, updated, and high-performing."
+        question: "What is your onboarding process?",
+        answer: "It starts with a Growth Audit. Once we're a fit, we move into a 7-day deep-dive strategy phase where we set up tracking, creative assets, and campaign structures."
     },
     {
-        question: "What is your delivery process?",
-        answer: "We follow a strict 3-phase process: Discovery & Strategy, Design & Prototyping, and Development & Launch."
+        question: "What does a growth retainer include?",
+        answer: "Our growth retainers are 'all-in'. They include constant creative testing, account management, funnel optimization, and weekly performance reporting."
     }
 ];
 

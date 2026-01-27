@@ -2,41 +2,71 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Quote } from 'lucide-react';
+
+const testimonials = [
+    {
+        name: "Sarah Jenkins",
+        role: "CEO, TechFlow",
+        quote: "Culture Capsule helped us increase leads by 3.4x in 60 days. Their performance ads strategy is unlike anything we've seen.",
+        metric: "3.4x Leads",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200"
+    },
+    {
+        name: "Marcus Thorne",
+        role: "Founder, Modern Labs",
+        quote: "We saw a 230% increase in ROAS within the first month of working with their growth systems. They are true partners.",
+        metric: "+230% ROAS",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200"
+    },
+    {
+        name: "Elena Rodriguez",
+        role: "Marketing Director, Vibe",
+        quote: "Their SEO strategy didn't just bring traffic; it brought the right customers. Our organic revenue is up 120%.",
+        metric: "+120% Revenue",
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200&h=200"
+    }
+];
 
 const Testimonial = () => {
     return (
-        <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    {/* Left: Team Member Image */}
-                    <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-[#F5F6F8]">
-                        <Image
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800&h=1000"
-                            alt="Team Member"
-                            fill
-                            className="object-cover"
-                        />
+        <section className="py-24 bg-[#FFE600] border-t-4 border-black" id="testimonials">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="mb-16 space-y-4">
+                    <div className="inline-block bg-black text-white border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_#FF3D81]">
+                        <span className="text-sm font-black uppercase tracking-widest">Success Stories</span>
                     </div>
+                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black">What Our <br /> <span className="text-[#3D5CFF]">Partners Say.</span></h2>
+                </div>
 
-                    {/* Right: Quote Content */}
-                    <div>
-                        <div className="mb-12">
-                            <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400">Testimonial</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {testimonials.map((t, i) => (
+                        <div key={i} className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_black] transition-all flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-16 h-16 border-4 border-black overflow-hidden relative grayscale hover:grayscale-0 transition-all">
+                                        <Image src={t.image} alt={t.name} fill className="object-cover" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-black uppercase text-lg leading-tight">{t.name}</h4>
+                                        <p className="text-xs font-bold uppercase opacity-60">{t.role}</p>
+                                    </div>
+                                </div>
+
+                                <div className="relative">
+                                    <Quote size={40} className="absolute -top-4 -left-4 text-[#FF3D81] opacity-20" />
+                                    <p className="text-xl font-bold leading-tight relative z-10">&quot;{t.quote}&quot;</p>
+                                </div>
+                            </div>
+
+                            <div className="mt-8 pt-6 border-t-4 border-black flex justify-between items-center">
+                                <span className="text-sm font-black uppercase tracking-widest text-[#3D5CFF]">Result</span>
+                                <div className="bg-[#FF3D81] text-white border-2 border-black px-3 py-1 font-black uppercase text-sm shadow-[3px_3px_0px_black]">
+                                    {t.metric}
+                                </div>
+                            </div>
                         </div>
-
-                        <blockquote className="relative">
-                            <p className="text-3xl lg:text-4xl font-bold leading-tight text-gray-900 mb-12">
-                                &quot;Working with Culture Capsule has been a joy. Their ability to translate complex ideas into beautiful digital experiences was exactly what our brand needed. They are truly partners in every sense of the word.&quot;
-                            </p>
-
-                            <footer className="pt-12 border-t border-gray-100">
-                                <cite className="not-italic">
-                                    <p className="text-xl font-bold text-gray-900">David Henderson</p>
-                                    <p className="text-gray-500">Creative Director, Apex Digital</p>
-                                </cite>
-                            </footer>
-                        </blockquote>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>
@@ -44,4 +74,3 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
-
