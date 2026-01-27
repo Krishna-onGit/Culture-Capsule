@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import MobileSlider from './ui/MobileSlider';
 
 const articles = [
     {
@@ -38,7 +39,8 @@ const Insights = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Desktop Grid */}
+                <div className="hidden lg:grid grid-cols-3 gap-8">
                     {articles.map((article, i) => (
                         <div key={i} className="group cursor-pointer">
                             <div className="brutal-card bg-white p-6 h-full flex flex-col hover:translate-x-1 hover:translate-y-1 transition-all">
@@ -58,6 +60,27 @@ const Insights = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* Mobile Slider */}
+                <MobileSlider>
+                    {articles.map((article, i) => (
+                        <div key={i} className="group cursor-pointer">
+                            <div className="brutal-card bg-white p-6 h-[550px] flex flex-col">
+                                <div className="relative aspect-[16/10] border-4 border-black overflow-hidden mb-6">
+                                    <Image src={article.image} alt={article.title} fill className="object-cover" />
+                                    <div className="absolute top-4 left-4 bg-black text-white px-3 py-1 font-black uppercase text-xs border-2 border-white">
+                                        {article.category}
+                                    </div>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight leading-tight mb-4">{article.title}</h3>
+                                <p className="text-sm font-bold opacity-70 mb-8 flex-grow">{article.excerpt}</p>
+                                <div className="pt-6 border-t-4 border-black flex items-center justify-between font-black uppercase text-sm">
+                                    <span>Read Playbook →</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </MobileSlider>
             </div>
         </section>
     );

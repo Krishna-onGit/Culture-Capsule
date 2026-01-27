@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Linkedin, Twitter } from 'lucide-react';
+import MobileSlider from './ui/MobileSlider';
 
 const team = [
     {
@@ -49,7 +50,8 @@ const Team = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {/* Desktop Grid */}
+                <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
                     {team.map((member, i) => (
                         <div key={i} className="group">
                             <div className="brutal-card bg-white p-4 hover:translate-x-1 hover:translate-y-1 transition-all">
@@ -75,6 +77,22 @@ const Team = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* Mobile Slider */}
+                <MobileSlider>
+                    {team.map((member, i) => (
+                        <div key={i} className="brutal-card bg-white p-4 h-[450px] flex flex-col">
+                            <div className="relative aspect-square border-4 border-black overflow-hidden mb-6 grayscale">
+                                <Image src={member.image} alt={member.name} fill className="object-cover" />
+                            </div>
+                            <div className="space-y-1 flex-grow">
+                                <h3 className="text-2xl font-black uppercase tracking-tight">{member.name}</h3>
+                                <p className="text-sm font-black text-[#3D5CFF] uppercase tracking-widest">{member.role}</p>
+                                <p className="text-xs font-bold text-black/60 uppercase">{member.expertise}</p>
+                            </div>
+                        </div>
+                    ))}
+                </MobileSlider>
             </div>
         </section>
     );

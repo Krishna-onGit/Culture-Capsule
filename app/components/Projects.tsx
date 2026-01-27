@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
+import MobileSlider from './ui/MobileSlider';
 
 
 const projects = [
@@ -90,8 +91,8 @@ const Projects = () => {
                     </div>
                 </div>
 
-                {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-grid">
+                {/* Desktop Grid */}
+                <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 project-grid">
                     {projects.map((project) => (
                         <Link href={`#`} key={project.id} className="block group">
                             <div className={`brutal-card h-full flex flex-col p-4 bg-white hover:translate-x-1 hover:translate-y-1 transition-all`}>
@@ -132,6 +133,36 @@ const Projects = () => {
                         </Link>
                     ))}
                 </div>
+
+                {/* Mobile Slider */}
+                <MobileSlider>
+                    {projects.map((project) => (
+                        <Link href={`#`} key={project.id} className="block">
+                            <div className={`brutal-card h-[500px] flex flex-col p-4 bg-white`}>
+                                <div className="relative aspect-[1/1] w-full border-4 border-black overflow-hidden mb-6">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover grayscale"
+                                    />
+                                    <div className="absolute bottom-4 left-4 flex flex-col gap-2">
+                                        <div className="bg-[#FFE600] border-4 border-black px-3 py-1 z-10 font-black uppercase text-sm shadow-[4px_4px_0px_black]">
+                                            {project.metric}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="space-y-2 px-2 flex-grow">
+                                    <h3 className="text-3xl font-black uppercase tracking-tighter">{project.title}</h3>
+                                    <p className="text-sm font-black uppercase bg-black text-white px-2 py-0.5 inline-block">{project.category}</p>
+                                </div>
+                                <div className="mt-6 pt-4 border-t-4 border-black text-center font-black uppercase text-sm">
+                                    View breakdown →
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </MobileSlider>
             </div>
         </section>
     );

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Layout, Palette, Megaphone, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
+import MobileSlider from './ui/MobileSlider';
 
 const solutions = [
     {
@@ -63,7 +64,8 @@ const Solutions = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Desktop Grid */}
+                <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
                     {solutions.map((item) => (
                         <div
                             key={item.id}
@@ -92,6 +94,32 @@ const Solutions = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* Mobile Slider */}
+                <MobileSlider>
+                    {solutions.map((item) => (
+                        <div
+                            key={item.id}
+                            className="brutal-card flex flex-col justify-between h-[450px] bg-white"
+                        >
+                            <div>
+                                <div className="flex justify-between items-start mb-8">
+                                    <span className="text-5xl font-black uppercase tracking-tighter leading-none">
+                                        {item.id}
+                                    </span>
+                                    <div className="w-14 h-14 bg-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                        <item.icon className="text-white" size={28} strokeWidth={3} />
+                                    </div>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase leading-[1.1] mb-4">{item.title}</h3>
+                                <p className="text-lg font-bold leading-tight text-black/70">{item.desc}</p>
+                            </div>
+                            <button className="flex items-center gap-2 text-sm font-black uppercase tracking-widest mt-8">
+                                Learn More →
+                            </button>
+                        </div>
+                    ))}
+                </MobileSlider>
             </div>
         </section>
     );

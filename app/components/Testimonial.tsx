@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Quote } from 'lucide-react';
+import MobileSlider from './ui/MobileSlider';
 
 const testimonials = [
     {
@@ -39,7 +40,8 @@ const Testimonial = () => {
                     <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black">What Our <br /> <span className="text-[#3D5CFF]">Partners Say.</span></h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Desktop Grid */}
+                <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
                     {testimonials.map((t, i) => (
                         <div key={i} className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_black] transition-all flex flex-col justify-between">
                             <div>
@@ -68,6 +70,32 @@ const Testimonial = () => {
                         </div>
                     ))}
                 </div>
+
+                {/* Mobile Slider */}
+                <MobileSlider interval={6000}>
+                    {testimonials.map((t, i) => (
+                        <div key={i} className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_black] h-[450px] flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="w-16 h-16 border-4 border-black overflow-hidden relative grayscale">
+                                        <Image src={t.image} alt={t.name} fill className="object-cover" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-black uppercase text-lg leading-tight">{t.name}</h4>
+                                        <p className="text-xs font-bold uppercase opacity-60">{t.role}</p>
+                                    </div>
+                                </div>
+                                <p className="text-xl font-bold leading-tight">&quot;{t.quote}&quot;</p>
+                            </div>
+                            <div className="mt-8 pt-6 border-t-4 border-black flex justify-between items-center">
+                                <span className="text-sm font-black uppercase tracking-widest text-[#3D5CFF]">Result</span>
+                                <div className="bg-[#FF3D81] text-white border-2 border-black px-3 py-1 font-black uppercase text-sm">
+                                    {t.metric}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </MobileSlider>
             </div>
         </section>
     );
