@@ -5,18 +5,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const StickyCTA = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isAtBottom, setIsAtBottom] = useState(false);
 
     useEffect(() => {
-        const toggleVisibility = () => {
+        const handleScroll = () => {
+            // Visibility toggle
             if (window.pageYOffset > 500) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
             }
+
+            // Bottom boundary detection
+            const scrollPosition = window.innerHeight + window.pageYOffset;
+            const pageHeight = document.documentElement.scrollHeight;
+            const distanceFromBottom = pageHeight - scrollPosition;
+
+            // If distance from bottom is less than the footer height/bottom area
+            if (distanceFromBottom < 100) {
+                setIsAtBottom(true);
+            } else {
+                setIsAtBottom(false);
+            }
         };
 
-        window.addEventListener('scroll', toggleVisibility);
-        return () => window.removeEventListener('scroll', toggleVisibility);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
@@ -24,9 +38,14 @@ const StickyCTA = () => {
             {isVisible && (
                 <motion.div
                     initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
+                    animate={{
+                        y: 0,
+                        opacity: 1,
+                        bottom: isAtBottom ? '110px' : '48px' // 48px is bottom-12, 110px sits it on the border
+                    }}
                     exit={{ y: 100, opacity: 0 }}
-                    className="fixed bottom-12 right-12 z-[100] hidden lg:block"
+                    transition={{ duration: 0.3 }}
+                    className="fixed right-6 md:right-12 z-[100] hidden lg:block"
                 >
                     <motion.button
                         whileHover={{ scale: 1.05, rotate: -2 }}
