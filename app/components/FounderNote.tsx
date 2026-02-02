@@ -5,8 +5,8 @@ import Image from 'next/image';
 
 const FounderNote = () => {
     return (
-        <section className="py-24 bg-white border-t-4 border-black">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <section className="py-16 bg-white border-t-4 border-black">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
                 <div className="brutal-card bg-[#3D5CFF] text-white p-12 md:p-20 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 -mr-32 -mt-32 rotate-45 border-4 border-white"></div>
@@ -53,3 +53,4 @@ const FounderNote = () => {
 };
 
 export default FounderNote;
+

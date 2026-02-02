@@ -34,9 +34,9 @@ const team = [
 
 const Team = () => {
     return (
-        <section className="py-24 bg-white border-t-4 border-black" id="team">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+        <section className="py-16 bg-white border-t-4 border-black" id="team">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-8">
                     <div className="space-y-4">
                         <div className="inline-block bg-[#FF3D81] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                             <span className="text-sm font-black uppercase text-white tracking-widest">The Humans</span>
@@ -99,3 +99,4 @@ const Team = () => {
 };
 
 export default Team;
+

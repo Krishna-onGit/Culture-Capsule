@@ -31,9 +31,9 @@ const testimonials = [
 
 const Testimonial = () => {
     return (
-        <section className="py-24 bg-[#FFE600] border-t-4 border-black" id="testimonials">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="mb-16 space-y-4">
+        <section className="py-16 bg-[#FFE600] border-t-4 border-black" id="testimonials">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
+                <div className="mb-10 space-y-4">
                     <div className="inline-block bg-black text-white border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_#FF3D81]">
                         <span className="text-sm font-black uppercase tracking-widest">Success Stories</span>
                     </div>
@@ -102,3 +102,4 @@ const Testimonial = () => {
 };
 
 export default Testimonial;
+

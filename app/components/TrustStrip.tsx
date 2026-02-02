@@ -12,17 +12,21 @@ const TrustStrip = () => {
     return (
         <div className="bg-white border-y-4 border-black py-8 overflow-hidden">
             {/* Desktop Layout */}
-            <div className="hidden md:flex max-w-7xl mx-auto px-6 flex-wrap justify-center gap-12 items-center">
-                <span className="text-xs font-black uppercase tracking-widest opacity-50 whitespace-nowrap">Recognized By:</span>
-                {partners.map((partner, i) => (
-                    <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.05, rotate: -2 }}
-                        className="border-2 border-black px-4 py-2 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase text-xs font-black tracking-widest cursor-default"
-                    >
-                        {partner}
-                    </motion.div>
-                ))}
+            {/* Desktop Layout */}
+            <div className="hidden md:flex max-w-[1200px] mx-auto px-6 md:px-20 flex-col items-center gap-8">
+                <p className="text-sm font-black uppercase tracking-widest text-black/40 text-center">Recognized By:</p>
+
+                <div className="flex flex-nowrap justify-between gap-4 w-full">
+                    {partners.map((partner, i) => (
+                        <motion.div
+                            key={i}
+                            whileHover={{ scale: 1.05, rotate: -2 }}
+                            className="flex-1 text-center border-2 border-black px-2 py-3 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase text-xs font-black tracking-widest cursor-default min-w-0 flex items-center justify-center whitespace-nowrap overflow-hidden text-ellipsis"
+                        >
+                            {partner}
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
             {/* Mobile Marquee */}
@@ -54,3 +58,4 @@ const TrustStrip = () => {
 };
 
 export default TrustStrip;
+

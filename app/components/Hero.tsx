@@ -10,7 +10,7 @@ const Hero = () => {
             {/* Noise texture overlay */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] pointer-events-none mix-blend-multiply"></div>
 
-            <div className="max-w-[1200px] mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-20 items-start relative z-10">
+            <div className="max-w-[1200px] mx-auto px-6 md:px-[102px] grid grid-cols-1 md:grid-cols-2 gap-20 items-start relative z-10">
 
                 {/* LEFT SIDE: TEXT CONTENT */}
                 <div className="flex flex-col justify-start gap-8 text-left">
@@ -163,3 +163,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

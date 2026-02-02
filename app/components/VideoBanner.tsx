@@ -6,7 +6,7 @@ import { Play } from 'lucide-react';
 
 const VideoBanner = () => {
     return (
-        <section className="py-24 bg-[#06B6D4]" id="about">
+        <section className="py-16 bg-[#06B6D4]" id="about">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left: Silhouette Visual */}
@@ -54,3 +54,4 @@ const VideoBanner = () => {
 };
 
 export default VideoBanner;
+

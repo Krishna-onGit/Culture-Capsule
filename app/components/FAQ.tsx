@@ -31,9 +31,9 @@ const FAQ = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-24 bg-white border-t-4 border-black" id="faq">
+        <section className="py-16 bg-white border-t-4 border-black" id="faq">
             <div className="max-w-4xl mx-auto px-6">
-                <div className="text-center mb-16 space-y-4">
+                <div className="text-center mb-10 space-y-4">
                     <div className="inline-block bg-[#FFE600] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <span className="text-sm font-black uppercase tracking-widest text-black">Common Queries</span>
                     </div>
@@ -83,4 +83,5 @@ const FAQ = () => {
 };
 
 export default FAQ;
+
 

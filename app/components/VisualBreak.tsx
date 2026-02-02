@@ -12,10 +12,10 @@ interface VisualBreakProps {
 
 const VisualBreak = ({ text, subtext, bgColor = "bg-black" }: VisualBreakProps) => {
     return (
-        <section className={`py-32 ${bgColor} text-white border-y-4 border-black relative overflow-hidden`}>
+        <section className={`h-[400px] flex flex-col items-center justify-center ${bgColor} text-white border-y-4 border-black relative overflow-hidden`}>
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none mix-blend-overlay"></div>
 
-            <div className="max-w-5xl mx-auto px-6 text-center space-y-12 relative z-10">
+            <div className="max-w-5xl mx-auto px-6 text-center space-y-8 relative z-10">
                 <Quote size={80} className="mx-auto text-[#FFE600] opacity-50" strokeWidth={3} />
                 <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none italic">
                     &quot;{text}&quot;
@@ -29,3 +29,4 @@ const VisualBreak = ({ text, subtext, bgColor = "bg-black" }: VisualBreakProps) 
 };
 
 export default VisualBreak;
+

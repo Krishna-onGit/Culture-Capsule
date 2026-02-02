@@ -5,11 +5,11 @@ import { Instagram, Twitter, Linkedin, Github, ArrowRight } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-24 bg-[#3D5CFF] text-white border-t-4 border-black overflow-hidden relative">
+        <section id="contact" className="py-16 bg-[#3D5CFF] text-white border-t-4 border-black overflow-hidden relative">
             {/* Overlay for noise texture */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none mix-blend-multiply"></div>
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 md:px-24 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="space-y-8 text-left">
                         <div className="inline-block bg-[#FFE600] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
@@ -102,3 +102,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

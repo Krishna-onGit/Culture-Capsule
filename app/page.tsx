@@ -7,14 +7,11 @@ import TrustStrip from "./components/TrustStrip";
 import Projects from "./components/Projects";
 import Process from "./components/Process";
 import BannerCTA from "./components/BannerCTA";
-import Team from "./components/Team";
-import FounderNote from "./components/FounderNote";
+
 import Testimonial from "./components/Testimonial";
 import Industries from "./components/Industries";
 import Solutions from "./components/Solutions";
-import Transparency from "./components/Transparency";
-import ConsultationCTA from "./components/ConsultationCTA";
-import Insights from "./components/Insights";
+
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import StickyCTA from "./components/StickyCTA";
@@ -46,8 +43,7 @@ export default function Home() {
             />
 
             <Process />
-            <Team />
-            <FounderNote />
+
 
             <Testimonial />
 
@@ -58,19 +54,20 @@ export default function Home() {
             />
 
             <Industries />
-            <Solutions />
-            <Transparency />
-
-            <ConsultationCTA />
-
             <BannerCTA
                 title="Stop leaving revenue on the table."
                 buttonText="Book Strategy Call"
                 bgColor="bg-[#3D5CFF]"
+                textColor="text-[#F7E402]"
             />
+            <Solutions />
 
-            <Insights />
+
+
+
             <Contact />
+
+
 
             <section className="py-24 bg-black text-white text-center border-t-4 border-black">
                 <h2 className="text-4xl md:text-6xl font-black uppercase mb-8 italic">Ready to scale in 30 days?</h2>
@@ -86,3 +83,4 @@ export default function Home() {
         </main>
     );
 }
+

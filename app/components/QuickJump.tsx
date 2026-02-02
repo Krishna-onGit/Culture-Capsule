@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 const links = [
     { name: "Wins", id: "work" },
     { name: "How", id: "process" },
-    { name: "Who", id: "team" },
     { name: "Growth", id: "industries" },
     { name: "Expertise", id: "services" },
     { name: "Contact", id: "contact" }
@@ -63,7 +62,7 @@ const QuickJump = () => {
                             key={link.id}
                             onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
                             className={`
-                                border-2 border-black px-3 py-1 font-black uppercase text-[10px] tracking-widest transition-all text-left w-24
+                                border-2 border-black px-2 py-1 font-black uppercase text-[10px] tracking-widest transition-all text-left w-[82px]
                                 ${activeSection === link.id
                                     ? 'bg-[#FFE600] translate-x-1 translate-y-1 shadow-none border-[#FF3D81]'
                                     : 'bg-white shadow-[4px_4px_0px_0px_black] hover:bg-[#FFE600] hover:translate-x-1 hover:translate-y-1 hover:shadow-none'
@@ -80,3 +79,4 @@ const QuickJump = () => {
 };
 
 export default QuickJump;
+

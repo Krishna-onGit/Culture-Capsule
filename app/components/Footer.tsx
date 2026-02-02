@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-        <footer className="py-24 bg-black text-white border-t-4 border-black">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <footer className="py-16 bg-black text-white border-t-4 border-black">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-24">
                     <div className="lg:col-span-4 space-y-8">
                         <Link href="/" className="text-5xl font-black uppercase tracking-tighter block leading-none">
@@ -94,4 +94,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
 

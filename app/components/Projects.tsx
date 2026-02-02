@@ -1,13 +1,9 @@
-"use client";
-
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import MobileSlider from './ui/MobileSlider';
-
 
 const projects = [
     {
@@ -67,19 +63,28 @@ const projects = [
 ];
 
 const Projects = () => {
-    const sectionRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const cardsPerPage = 3;
+    const maxIndex = Math.ceil(projects.length / cardsPerPage) - 1;
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+    };
 
     return (
-        <section ref={sectionRef} className="py-24 bg-white text-black border-t-4 border-black" id="work">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <section className="py-24 bg-white text-black border-t-2 border-black" id="work">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                     <div className="space-y-4">
-                        <div className="inline-block bg-[#3D5CFF] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all cursor-default">
+                        <div className="inline-block bg-[#3D5CFF] border-2 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all cursor-default">
                             <span className="text-sm font-black uppercase text-white tracking-widest">Case Studies</span>
                         </div>
                         <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter">Real <br /> <span className="text-[#FF3D81]">Campaign Results.</span></h2>
-                        <p className="text-xs font-black uppercase tracking-widest opacity-40">Click any card for full breakdown</p>
                     </div>
                     <div className="max-w-md">
                         <p className="text-xl font-bold leading-tight mb-6">
@@ -91,47 +96,89 @@ const Projects = () => {
                     </div>
                 </div>
 
-                {/* Desktop Grid */}
-                <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 project-grid">
-                    {projects.map((project) => (
-                        <Link href={`#`} key={project.id} className="block group">
-                            <div className={`brutal-card h-full flex flex-col p-4 bg-white hover:translate-x-1 hover:translate-y-1 transition-all`}>
-                                <div className="relative aspect-[1/1] w-full border-4 border-black overflow-hidden mb-6">
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        fill
-                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110"
-                                    />
-                                    {/* Metric Badge */}
-                                    <div className="absolute bottom-4 left-4 flex flex-col gap-2">
-                                        <div className="bg-[#FFE600] border-4 border-black px-3 py-1 z-10 font-black uppercase text-sm shadow-[4px_4px_0px_black] group-hover:-translate-y-1 transition-transform self-start">
-                                            {project.metric}
-                                        </div>
-                                        <div className="bg-white border-4 border-black px-3 py-1 z-10 font-black uppercase text-xs shadow-[4px_4px_0px_black] group-hover:-translate-y-1 transition-transform self-start">
-                                            In {project.timeline}
-                                        </div>
-                                    </div>
-                                    <div className="absolute top-4 right-4 bg-white border-4 border-black p-2 z-10">
-                                        <ArrowUpRight size={20} strokeWidth={4} />
-                                    </div>
-                                </div>
+                {/* Desktop Carousel */}
+                <div className="hidden md:block overflow-hidden relative px-2 py-4 cursor-grab active:cursor-grabbing">
+                    <motion.div
+                        className="flex gap-8"
+                        drag="x"
+                        dragConstraints={{ left: -maxIndex * 1280, right: 0 }} // Approximate width constraint
+                        dragElastic={0.2}
+                        onDragEnd={(_, info) => {
+                            const threshold = 100;
+                            if (info.offset.x < -threshold && currentIndex < maxIndex) {
+                                nextSlide();
+                            } else if (info.offset.x > threshold && currentIndex > 0) {
+                                prevSlide();
+                            }
+                        }}
+                        animate={{ x: `-${currentIndex * 100}%` }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    >
+                        {Array.from({ length: Math.ceil(projects.length / cardsPerPage) }).map((_, pageIndex) => (
+                            <div key={pageIndex} className="min-w-full grid grid-cols-3 gap-8">
+                                {projects.slice(pageIndex * cardsPerPage, (pageIndex + 1) * cardsPerPage).map((project) => (
+                                    <Link
+                                        href={`#`}
+                                        key={project.id}
+                                        className="block group h-full"
+                                        draggable={false}
+                                    >
+                                        <div className="brutal-card h-full flex flex-col p-4 bg-white hover:translate-x-1 hover:translate-y-1 transition-all border-4 border-black shadow-[8px_8px_0px_black] pointer-events-none group-active:pointer-events-none group-active:select-none">
+                                            <div className="relative aspect-[1/1] w-full border-4 border-black overflow-hidden mb-3 pointer-events-none">
+                                                <Image
+                                                    src={project.image}
+                                                    alt={project.title}
+                                                    fill
+                                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110 pointer-events-none"
+                                                    draggable={false}
+                                                />
+                                                <div className="absolute bottom-3 left-3 flex flex-col gap-1.5">
+                                                    <div className="bg-[#FFE600] border-2 border-black px-2 py-0.5 z-10 font-black uppercase text-[10px] shadow-[3px_3px_0px_black] group-hover:-translate-y-1 transition-transform self-start">
+                                                        {project.metric}
+                                                    </div>
+                                                    <div className="bg-white border-2 border-black px-2 py-0.5 z-10 font-black uppercase text-[8px] shadow-[3px_3px_0px_black] group-hover:-translate-y-1 transition-transform self-start">
+                                                        In {project.timeline}
+                                                    </div>
+                                                </div>
+                                                <div className="absolute top-3 right-3 bg-white border-2 border-black p-1.5 z-10">
+                                                    <ArrowUpRight size={16} strokeWidth={4} />
+                                                </div>
+                                            </div>
 
-                                <div className="space-y-2 px-2 flex-grow">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xs font-black uppercase bg-black text-white px-2 py-0.5 hover:-translate-y-0.5 transition-all">{project.category}</span>
-                                        <span className="text-xs font-black uppercase border-2 border-black px-2 py-0.5">{project.id}</span>
-                                    </div>
-                                    <h3 className="text-3xl font-black uppercase tracking-tighter group-hover:text-[#3D5CFF] transition-colors">{project.title}</h3>
-                                </div>
+                                            <div className="space-y-1 px-1 flex-grow pointer-events-none">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[10px] font-black uppercase bg-black text-white px-1.5 py-0.5">{project.category}</span>
+                                                    <span className="text-[10px] font-black uppercase border-2 border-black px-1.5 py-0.5">{project.id}</span>
+                                                </div>
+                                                <h3 className="text-xl font-black uppercase tracking-tighter group-hover:text-[#3D5CFF] transition-colors leading-tight">{project.title}</h3>
+                                            </div>
 
-                                <div className="mt-6 pt-4 border-t-4 border-black flex justify-between items-center px-2 font-black uppercase text-sm">
-                                    <span>Case Study</span>
-                                    <span>View Campaign Breakdown →</span>
-                                </div>
+                                            <div className="mt-3 pt-2 border-t-2 border-black flex justify-between items-center px-1 font-black uppercase text-[10px] pointer-events-none">
+                                                <span>Case Study</span>
+                                                <span>Breakdown →</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
                             </div>
-                        </Link>
-                    ))}
+                        ))}
+                    </motion.div>
+                </div>
+
+                {/* Carousel Navigation - Centered below the cards */}
+                <div className="hidden md:flex items-center justify-center gap-6 mt-12">
+                    <button
+                        onClick={prevSlide}
+                        className="bg-white border-4 border-black p-3 hover:bg-[#FFE600] transition-colors shadow-[6px_6px_0px_black] active:shadow-none active:translate-x-1 active:translate-y-1 group"
+                    >
+                        <ChevronLeft size={36} strokeWidth={4} />
+                    </button>
+                    <button
+                        onClick={nextSlide}
+                        className="bg-white border-4 border-black p-3 hover:bg-[#FFE600] transition-colors shadow-[6px_6px_0px_black] active:shadow-none active:translate-x-1 active:translate-y-1 group"
+                    >
+                        <ChevronRight size={36} strokeWidth={4} />
+                    </button>
                 </div>
 
                 {/* Mobile Slider */}
@@ -169,4 +216,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
 

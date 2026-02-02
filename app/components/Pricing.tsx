@@ -40,8 +40,8 @@ const plans = [
 
 const Pricing = () => {
     return (
-        <section className="py-24 bg-white border-t-4 border-black" id="pricing">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <section className="py-16 bg-white border-t-4 border-black" id="pricing">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
                 <div className="text-center mb-20 space-y-4">
                     <div className="inline-block bg-black text-white border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_#FF3D81] hover:-translate-y-1 hover:shadow-[4px_5px_0px_0px_#FF3D81] transition-all cursor-default">
                         <span className="text-sm font-black uppercase tracking-widest">Pricing</span>
@@ -113,4 +113,5 @@ const Pricing = () => {
 };
 
 export default Pricing;
+
 

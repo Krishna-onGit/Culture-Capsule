@@ -5,10 +5,10 @@ import { ArrowRight, Calendar } from 'lucide-react';
 
 const ConsultationCTA = () => {
     return (
-        <section className="py-24 bg-white border-y-4 border-black overflow-hidden relative">
+        <section className="py-16 bg-white border-y-4 border-black overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFE600] opacity-20 -mr-32 -mt-32 rounded-full border-4 border-black"></div>
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 md:px-24 relative z-10">
                 <div className="brutal-card bg-black text-white p-12 md:p-20 shadow-[16px_16px_0px_0px_#3D5CFF]">
                     <div className="max-w-4xl space-y-8">
                         <div className="inline-block bg-[#3D5CFF] border-2 border-white px-4 py-1 uppercase font-black text-xs tracking-widest shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
@@ -43,3 +43,4 @@ const ConsultationCTA = () => {
 };
 
 export default ConsultationCTA;
+

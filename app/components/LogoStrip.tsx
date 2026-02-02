@@ -39,18 +39,18 @@ const LogoStrip = () => {
                 </div>
 
                 {/* Desktop Grid */}
-                <div className="hidden md:flex flex-wrap justify-center gap-6">
+                <div className="hidden md:flex flex-nowrap justify-between gap-4 w-full">
                     {logos.map((logo, i) => (
                         <motion.div
                             key={i}
                             whileHover={{
                                 y: -6,
                                 rotate: [0, -2, 2, -2, 0],
-                                boxShadow: "10px 10px 0px 0px rgba(0,0,0,1)"
+                                boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)"
                             }}
-                            className="border-4 border-black bg-white px-8 py-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all cursor-default"
+                            className="flex-1 text-center border-4 border-black bg-white px-2 py-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all cursor-default min-w-0"
                         >
-                            <span className="text-xl font-black italic tracking-tighter text-black">{logo}</span>
+                            <span className="text-sm lg:text-base font-black italic tracking-tight text-black sm:whitespace-nowrap overflow-hidden text-ellipsis block">{logo}</span>
                         </motion.div>
                     ))}
                 </div>
@@ -60,3 +60,4 @@ const LogoStrip = () => {
 };
 
 export default LogoStrip;
+

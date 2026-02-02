@@ -80,3 +80,4 @@ const MobileSlider = ({ children, className = "", autoPlay = true, interval = 50
 };
 
 export default MobileSlider;
+

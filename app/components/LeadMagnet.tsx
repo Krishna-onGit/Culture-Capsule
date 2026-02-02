@@ -5,10 +5,10 @@ import { Download, CheckCircle2 } from 'lucide-react';
 
 const LeadMagnet = () => {
     return (
-        <section className="py-24 bg-[#FFE600] border-y-4 border-black relative overflow-hidden">
+        <section className="py-16 bg-[#FFE600] border-y-4 border-black relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF3D81] opacity-20 -mr-32 -mt-32 rounded-full border-4 border-black"></div>
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 md:px-24 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center border-8 border-black p-8 md:p-16 bg-white shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]">
                     <div className="space-y-8">
                         <div className="inline-block bg-black text-white px-4 py-1 border-2 border-black font-black uppercase text-sm tracking-widest shadow-[4px_4px_0px_0px_#FF3D81]">
@@ -57,3 +57,4 @@ const LeadMagnet = () => {
 };
 
 export default LeadMagnet;
+

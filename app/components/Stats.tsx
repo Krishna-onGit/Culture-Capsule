@@ -12,8 +12,8 @@ const statsData = [
 
 const Stats = () => {
     return (
-        <section className="py-24 bg-white border-t-4 border-black">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <section className="py-16 bg-white border-t-4 border-black">
+            <div className="max-w-7xl mx-auto px-6 md:px-24">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                     {/* Main Branding Card */}
                     <div className="lg:col-span-12 mb-8">
@@ -84,4 +84,5 @@ const Stats = () => {
 };
 
 export default Stats;
+
 
