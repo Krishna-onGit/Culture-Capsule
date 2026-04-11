@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const links = [
-    { name: "Wins", id: "work" },
-    { name: "How", id: "process" },
-    { name: "Growth", id: "industries" },
+    { name: "Legends", id: "work" },
+    { name: "Journey", id: "process" },
+    { name: "Elite", id: "industries" },
     { name: "Expertise", id: "services" },
-    { name: "Contact", id: "contact" }
+    { name: "Join", id: "contact" }
 ];
 
 const QuickJump = () => {
@@ -79,4 +79,3 @@ const QuickJump = () => {
 };
 
 export default QuickJump;
-

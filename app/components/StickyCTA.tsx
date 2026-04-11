@@ -52,7 +52,7 @@ const StickyCTA = () => {
                         onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                         className="bg-[#FF3D81] text-white border-4 border-black px-4 py-3 font-black uppercase text-xs shadow-[8px_8px_0px_0px_black] hover:shadow-none transition-all flex items-center gap-2 group w-[180px] justify-center text-center"
                     >
-                        Growth Audit <span className="bg-white text-black px-1 inline-block">FREE</span>
+                        Live Results <span className="bg-white text-black px-1 inline-block">STATS</span>
                     </motion.button>
                 </motion.div>
             )}
@@ -61,4 +61,3 @@ const StickyCTA = () => {
 };
 
 export default StickyCTA;
-

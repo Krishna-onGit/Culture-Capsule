@@ -10,27 +10,27 @@ import { useRouter } from 'next/navigation';
 const projects = [
     {
         id: "01",
-        title: "Retro Future",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Product Design",
+        title: "Lionel Messi",
+        image: "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Legend",
     },
     {
         id: "02",
-        title: "Urban Style",
-        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Fashion Branding",
+        title: "Cristiano Ronaldo",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Goal Machine",
     },
     {
         id: "03",
-        title: "Digital Soul",
-        image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Creative Content",
+        title: "Kylian Mbappé",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The New Era",
     },
     {
         id: "04",
-        title: "Technical Wear",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "E-commerce",
+        title: "Erling Haaland",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Predator",
     }
 ];
 
@@ -68,7 +68,7 @@ const AllProjects = () => {
                 className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 bg-white/80 backdrop-blur-md"
             >
                 <Link href="/" className="text-2xl font-bold tracking-tight">
-                    Culture Capsule<span className="text-sm align-top">®</span>
+                    The Beautiful Game<span className="text-sm align-top">®</span>
                 </Link>
                 <div className="flex gap-4">
                     <button onClick={() => router.back()} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-gray-600 transition-colors">
@@ -90,7 +90,7 @@ const AllProjects = () => {
                         transition={{ duration: 1, delay: 0.2 }}
                         className="text-7xl font-black italic tracking-tighter mb-6"
                     >
-                        All Projects
+                        Star Profiles
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,7 @@ const AllProjects = () => {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl text-gray-500 font-medium max-w-2xl mx-auto"
                     >
-                        A curated collection of our finest work, pushing the boundaries of digital design and brand identity.
+                        A deep dive into the players who define world football. Stats, history, and the impact they've made on the beautiful game.
                     </motion.p>
                 </motion.div>
 
@@ -148,11 +148,10 @@ const AllProjects = () => {
             </main>
 
             <footer className="py-12 text-center text-sm font-bold uppercase tracking-widest text-gray-400 border-t border-gray-100">
-                Culture Capsule® — All Rights Reserved
+                The Beautiful Game® — All Rights Reserved
             </footer>
         </div>
     );
 };
 
 export default AllProjects;
-

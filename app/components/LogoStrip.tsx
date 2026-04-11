@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const logos = [
-    "TECHFLOW", "MODERN LABS", "VIBE DESIGN", "CULTURE CO", "GLOBAL SCALE", "FUTURE RELIC"
+    "PREMIER LEAGUE", "LA LIGA", "SERIE A", "BUNDESLIGA", "LIGUE 1", "CHAMPIONS LEAGUE"
 ];
 
 const LogoStrip = () => {
@@ -14,7 +14,7 @@ const LogoStrip = () => {
     return (
         <div className="w-full bg-[#F5F5F5] border-b-4 border-black py-12 relative overflow-hidden">
             <div className="max-w-[1200px] mx-auto px-6 md:px-20">
-                <p className="text-sm font-black uppercase tracking-widest text-black/40 mb-8 text-center">Brands we’ve helped scale</p>
+                <p className="text-sm font-black uppercase tracking-widest text-black/40 mb-8 text-center">Top Leagues We Cover</p>
 
                 {/* Mobile Marquee */}
                 <div className="md:hidden overflow-hidden relative">
@@ -60,4 +60,3 @@ const LogoStrip = () => {
 };
 
 export default LogoStrip;
-

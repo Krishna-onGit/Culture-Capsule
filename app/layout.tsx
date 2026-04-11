@@ -71,11 +71,12 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Culture Capsule® | Creative Digital Agency",
-  description: "Culture Capsule is a premium digital agency focused on craftsmanship and innovative digital solutions for global brands.",
+  title: "The Beautiful Game® | Football Culture & Stats Hub",
+  description: "The Beautiful Game is your ultimate destination for football culture — leagues, legends, rising stars, live stats, and the passion that moves the world.",
 };
 
 import SmoothScroll from "./components/SmoothScroll";
+import CustomCursor from "./components/ui/CustomCursor";
 
 export default function RootLayout({
   children,
@@ -85,9 +86,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${inter.variable} ${montserrat.variable} ${dancingScript.variable}`}>
       <body
-        className="font-sans antialiased bg-white text-black"
+        className="font-sans antialiased bg-white text-black cursor-none"
         suppressHydrationWarning
       >
+        <CustomCursor />
         <SmoothScroll>
           {/* Global Texture Overlay */}
           <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] pointer-events-none mix-blend-multiply z-[9999]"></div>
@@ -97,5 +99,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-

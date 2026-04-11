@@ -6,36 +6,36 @@ import { Search, Map, Rocket, BarChart, TrendingUp } from 'lucide-react';
 const steps = [
     {
         id: "01",
-        title: "Audit & Research",
-        desc: "We dive deep into your data, competitors, and customer behavior to find the 'leaks' in your current funnel.",
+        title: "Group Stage Battles",
+        desc: "Where it all begins. 32 clubs clash in intense group matches to earn their ticket to the knockouts. Every point counts.",
         icon: Search,
         color: "#FFE600"
     },
     {
         id: "02",
-        title: "Strategy Blueprint",
-        desc: "No guesswork. We build a custom growth roadmap focused on high-impact channels and ROI-driven creative.",
+        title: "Knockout Rounds",
+        desc: "Two legs, away goals, last-minute drama. The Round of 16 to Semi-Finals is where legends are forged under pressure.",
         icon: Map,
         color: "#FF3D81"
     },
     {
         id: "03",
-        title: "Launch Campaigns",
-        desc: "We deploy high-performance ads and conversion-optimized systems built to capture and convert attention.",
+        title: "The Final Showdown",
+        desc: "One night. One match. One trophy. The Champions League Final — the most-watched club football event on the planet.",
         icon: Rocket,
         color: "#3D5CFF"
     },
     {
         id: "04",
-        title: "Weekly Optimization",
-        desc: "We test, tweak, and refine every single variable—from ad copy to landing pages—to squeeze out more profit.",
+        title: "Season Stats Analysis",
+        desc: "xG, pass completion, pressing intensity, heatmaps — we break down every statistic so you understand the game deeper.",
         icon: BarChart,
         color: "#FFFFFF"
     },
     {
         id: "05",
-        title: "Scale What Works",
-        desc: "Once we find the winning formula, we push the gas. Predictable growth, unlocked and scaled to the moon.",
+        title: "Transfer Window",
+        desc: "Who's moving where? Track the biggest transfers, rumor mills, and deadline-day drama that reshapes entire leagues.",
         icon: TrendingUp,
         color: "#FFE600"
     }
@@ -49,9 +49,9 @@ const Process = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-24 relative z-10">
                 <div className="mb-20 space-y-4">
                     <div className="inline-block bg-[#FFE600] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
-                        <span className="text-sm font-black uppercase text-black tracking-widest">Our Methodology</span>
+                        <span className="text-sm font-black uppercase text-black tracking-widest">The Journey</span>
                     </div>
-                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">The System <br /> <span className="text-[#3D5CFF]">How We Work.</span></h2>
+                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">The Road To <br /> <span className="text-[#3D5CFF]">Glory.</span></h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -75,8 +75,8 @@ const Process = () => {
                 </div>
 
                 <div className="mt-20 p-8 border-4 border-white bg-[#FFE600] text-black flex flex-col md:flex-row justify-between items-center gap-8 shadow-[12px_12px_0px_0px_rgba(255,255,255,0.1)]">
-                    <p className="text-2xl font-black uppercase tracking-tight text-center md:text-left">Ready to see our process in action for your brand?</p>
-                    <button className="brutal-btn bg-white text-black hover:!bg-[#EC3B80] hover:!text-white w-full md:w-auto text-xl py-6 px-12">Book Your Strategy Call</button>
+                    <p className="text-2xl font-black uppercase tracking-tight text-center md:text-left">Want to test your football IQ? Take the Ultimate Trivia Challenge!</p>
+                    <button className="brutal-btn bg-white text-black hover:!bg-[#EC3B80] hover:!text-white w-full md:w-auto text-xl py-6 px-12">Start The Quiz</button>
                 </div>
             </div>
         </section>
@@ -84,4 +84,3 @@ const Process = () => {
 };
 
 export default Process;
-

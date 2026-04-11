@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const partners = ["Google Partner", "Meta Business Partner", "Clutch 5-Star", "Product Hunt First", "Forbes Agency Council"];
+const partners = ["FIFA Official", "UEFA Champions", "ESPN FC Rated", "Ballon d'Or Tracker", "World Cup Hub"];
 
 const TrustStrip = () => {
     // Duplicate partners for seamless marquee
@@ -14,7 +14,7 @@ const TrustStrip = () => {
             {/* Desktop Layout */}
             {/* Desktop Layout */}
             <div className="hidden md:flex max-w-[1200px] mx-auto px-6 md:px-20 flex-col items-center gap-8">
-                <p className="text-sm font-black uppercase tracking-widest text-black/40 text-center">Recognized By:</p>
+                <p className="text-sm font-black uppercase tracking-widest text-black/40 text-center">Powered By:</p>
 
                 <div className="flex flex-nowrap justify-between gap-4 w-full">
                     {partners.map((partner, i) => (
@@ -31,7 +31,7 @@ const TrustStrip = () => {
 
             {/* Mobile Marquee */}
             <div className="md:hidden space-y-4">
-                <p className="text-[10px] font-black uppercase tracking-widest opacity-50 text-center px-6">Recognized By:</p>
+                <p className="text-[10px] font-black uppercase tracking-widest opacity-50 text-center px-6">Powered By:</p>
                 <div className="overflow-hidden relative">
                     <motion.div
                         className="flex gap-4 whitespace-nowrap"
@@ -58,4 +58,3 @@ const TrustStrip = () => {
 };
 
 export default TrustStrip;
-

@@ -23,7 +23,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-24 flex items-center justify-between">
         <Link href="/" className="text-3xl font-black uppercase tracking-tighter text-black">
-          Culture Capsule<span className="text-sm align-top font-bold">®</span>
+          The Beautiful Game<span className="text-sm align-top font-bold">®</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -32,13 +32,13 @@ const Navbar = () => {
             href="/team"
             className="bg-[#EC3B80] border-4 border-black px-6 py-2.5 text-sm font-black uppercase tracking-widest text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
           >
-            Team
+            Legends
           </Link>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-[#FFE600] border-4 border-black px-6 py-2.5 text-sm font-black uppercase tracking-widest text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all"
           >
-            Contact
+            Join
           </button>
         </div>
 
@@ -65,7 +65,7 @@ const Navbar = () => {
               className="block w-full py-4 bg-[#EC3B80] border-4 border-black text-white text-center font-black uppercase shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
               onClick={() => setIsOpen(false)}
             >
-              Team
+              Legends
             </Link>
             <button
               className="w-full py-4 bg-[#FFE600] border-4 border-black text-black font-black uppercase shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
@@ -74,7 +74,7 @@ const Navbar = () => {
                 setIsOpen(false);
               }}
             >
-              Contact
+              Join
             </button>
           </motion.div>
         )}
@@ -84,5 +84,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

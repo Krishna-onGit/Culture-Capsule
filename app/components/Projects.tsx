@@ -8,56 +8,56 @@ import MobileSlider from './ui/MobileSlider';
 const projects = [
     {
         id: "01",
-        title: "Growth Hackers Co.",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
-        category: "Meta Ads + Funnels",
-        metric: "+312% ROAS",
-        timeline: "60 Days",
+        title: "Lionel Messi",
+        image: "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?q=80&w=1000&auto=format&fit=crop",
+        category: "Forward · Argentina",
+        metric: "8× Ballon d'Or",
+        timeline: "Inter Miami CF",
         color: "#FFE600"
     },
     {
         id: "02",
-        title: "Eco Scale",
-        image: "https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=1000&auto=format&fit=crop",
-        category: "SEO + Content",
-        metric: "3.4x Leads",
-        timeline: "90 Days",
+        title: "Cristiano Ronaldo",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop",
+        category: "Forward · Portugal",
+        metric: "900+ Goals",
+        timeline: "Al-Nassr FC",
         color: "#FF3D81"
     },
     {
         id: "03",
-        title: "Volt Fashion",
-        image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
-        category: "Performance Marketing",
-        metric: "$1.2M Revenue",
-        timeline: "4 Months",
+        title: "Kylian Mbappé",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1000&auto=format&fit=crop",
+        category: "Forward · France",
+        metric: "World Cup Winner",
+        timeline: "Real Madrid",
         color: "#3D5CFF"
     },
     {
         id: "04",
-        title: "Alpha Tech",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
-        category: "CRO + Landing Pages",
-        metric: "12% Conv. Rate",
-        timeline: "30 Days",
+        title: "Erling Haaland",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?q=80&w=1000&auto=format&fit=crop",
+        category: "Striker · Norway",
+        metric: "36 PL Goals",
+        timeline: "Man City",
         color: "#FFFFFF"
     },
     {
         id: "05",
-        title: "Urban Flow",
-        image: "https://images.unsplash.com/photo-1633419461186-7d40a2e12e7e?q=80&w=1000&auto=format&fit=crop",
-        category: "Social Growth",
-        metric: "50K+ Followers",
-        timeline: "6 Months",
+        title: "Jude Bellingham",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1000&auto=format&fit=crop",
+        category: "Midfielder · England",
+        metric: "La Liga Best",
+        timeline: "Real Madrid",
         color: "#FFE600"
     },
     {
         id: "06",
-        title: "Global Reach",
-        image: "https://images.unsplash.com/photo-1512418490979-92798ced138a?q=80&w=1000&auto=format&fit=crop",
-        category: "Brand Strategy",
-        metric: "Market Leader",
-        timeline: "Ongoing",
+        title: "Vinícius Jr.",
+        image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?q=80&w=1000&auto=format&fit=crop",
+        category: "Winger · Brazil",
+        metric: "UCL Winner",
+        timeline: "Real Madrid",
         color: "#FF3D81"
     },
 ];
@@ -82,16 +82,16 @@ const Projects = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                     <div className="space-y-4">
                         <div className="inline-block bg-[#3D5CFF] border-2 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all cursor-default">
-                            <span className="text-sm font-black uppercase text-white tracking-widest">Case Studies</span>
+                            <span className="text-sm font-black uppercase text-white tracking-widest">Star Players</span>
                         </div>
-                        <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter">Real <br /> <span className="text-[#FF3D81]">Campaign Results.</span></h2>
+                        <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter">The <br /> <span className="text-[#FF3D81]">GOAT Debate.</span></h2>
                     </div>
                     <div className="max-w-md">
                         <p className="text-xl font-bold leading-tight mb-6">
-                            Real results for real brands. We don&apos;t just build websites; we build growth engines.
+                            From all-time legends to next-gen phenoms. Explore the players who define — and redefine — the beautiful game.
                         </p>
                         <Link href="/projects" className="inline-block brutal-btn bg-[#FFE600] text-black">
-                            View All Results
+                            View All Players
                         </Link>
                     </div>
                 </div>
@@ -137,7 +137,7 @@ const Projects = () => {
                                                         {project.metric}
                                                     </div>
                                                     <div className="bg-white border-2 border-black px-2 py-0.5 z-10 font-black uppercase text-[8px] shadow-[3px_3px_0px_black] group-hover:-translate-y-1 transition-transform self-start">
-                                                        In {project.timeline}
+                                                        {project.timeline}
                                                     </div>
                                                 </div>
                                                 <div className="absolute top-3 right-3 bg-white border-2 border-black p-1.5 z-10">
@@ -154,8 +154,8 @@ const Projects = () => {
                                             </div>
 
                                             <div className="mt-3 pt-2 border-t-2 border-black flex justify-between items-center px-1 font-black uppercase text-[10px] pointer-events-none">
-                                                <span>Case Study</span>
-                                                <span>Breakdown →</span>
+                                                <span>Player Profile</span>
+                                                <span>Full Stats →</span>
                                             </div>
                                         </div>
                                     </Link>
@@ -204,7 +204,7 @@ const Projects = () => {
                                     <p className="text-sm font-black uppercase bg-black text-white px-2 py-0.5 inline-block">{project.category}</p>
                                 </div>
                                 <div className="mt-6 pt-4 border-t-4 border-black text-center font-black uppercase text-sm">
-                                    View breakdown →
+                                    View full stats →
                                 </div>
                             </div>
                         </Link>
@@ -216,5 +216,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
-

@@ -33,13 +33,13 @@ export default function Home() {
             <Projects />
 
             <VisualBreak
-                text="The best way to predict your future is to create it."
-                subtext="Let's build your growth engine."
+                text="Football is the universal language that unites billions."
+                subtext="The Beautiful Game lives here."
             />
 
             <BannerCTA
-                title="Ready to see these results for your brand?"
-                buttonText="Get Your Free Audit"
+                title="Think you know football? Test your knowledge!"
+                buttonText="Take the Quiz"
             />
 
             <Process />
@@ -48,20 +48,19 @@ export default function Home() {
             <Testimonial />
 
             <VisualBreak
-                text="Data tells you what. Strategy tells you why."
-                subtext="Science-backed growth systems."
+                text="Champions are made when nobody is watching."
+                subtext="Where legends are forged."
                 bgColor="bg-[#3D5CFF]"
             />
 
             <Industries />
             <BannerCTA
-                title="Stop leaving revenue on the table."
-                buttonText="Book Strategy Call"
+                title="Never miss a matchday moment again."
+                buttonText="Get Live Alerts"
                 bgColor="bg-[#3D5CFF]"
                 textColor="text-[#F7E402]"
             />
             <Solutions />
-
 
 
 
@@ -70,12 +69,12 @@ export default function Home() {
 
 
             <section className="py-24 bg-black text-white text-center border-t-4 border-black">
-                <h2 className="text-4xl md:text-6xl font-black uppercase mb-8 italic">Ready to scale in 30 days?</h2>
+                <h2 className="text-4xl md:text-6xl font-black uppercase mb-8 italic">Ready for matchday?</h2>
                 <button
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                     className="brutal-btn bg-[#FFE600] text-black hover:bg-white text-2xl py-8 px-16"
                 >
-                    Start Your Growth Journey
+                    Join The Pitch
                 </button>
             </section>
 
@@ -83,4 +82,3 @@ export default function Home() {
         </main>
     );
 }
-

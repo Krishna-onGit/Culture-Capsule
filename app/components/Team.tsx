@@ -7,28 +7,28 @@ import MobileSlider from './ui/MobileSlider';
 
 const team = [
     {
-        name: "Alex Rivera",
-        role: "Founder & Head of Strategy",
-        expertise: "Performance Marketing Expert",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400"
+        name: "Zinedine Zidane",
+        role: "The Maestro",
+        expertise: "Tactical Elegance & Vision",
+        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400&h=400"
     },
     {
-        name: "Jordan Smith",
-        role: "Creative Director",
-        expertise: "Brand Identity & Content",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400&h=400"
+        name: "Johan Cruyff",
+        role: "The Architect",
+        expertise: "Total Football Philosophy",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&q=80&w=400&h=400"
     },
     {
-        name: "Sarah Chen",
-        role: "Head of Growth",
-        expertise: "Funnel & CRO Specialist",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400"
+        name: "Diego Maradona",
+        role: "The Icon",
+        expertise: "Unyielding Passion & Skill",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=80&w=400&h=400"
     },
     {
-        name: "Marcus Thorne",
-        role: "Account Executive",
-        expertise: "Client Success & Scale",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400"
+        name: "Pelé",
+        role: "The King",
+        expertise: "The Standard of Brilliance",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=400&h=400"
     }
 ];
 
@@ -39,13 +39,13 @@ const Team = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-8">
                     <div className="space-y-4">
                         <div className="inline-block bg-[#FF3D81] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                            <span className="text-sm font-black uppercase text-white tracking-widest">The Humans</span>
+                            <span className="text-sm font-black uppercase text-white tracking-widest">Immortal Icons</span>
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">Meet the <br /> <span className="text-[#3D5CFF]">Growth Team.</span></h2>
+                        <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">Meet the <br /> <span className="text-[#3D5CFF]">Legends.</span></h2>
                     </div>
                     <div className="max-w-md">
                         <p className="text-xl font-bold leading-tight">
-                            Strategists, creatives, and performance marketers. We are a collective of experts dedicated to your brand&apos;s scale.
+                            The players who changed the game forever. Their stories, their tactics, and their impact on football culture.
                         </p>
                     </div>
                 </div>
@@ -99,4 +99,3 @@ const Team = () => {
 };
 
 export default Team;
-

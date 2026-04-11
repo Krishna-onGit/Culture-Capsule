@@ -7,7 +7,7 @@ import MobileSlider from './ui/MobileSlider';
 
 const Industries = () => {
     const stack = [
-        "Meta Ads", "Google Ads", "TikTok Ads", "Shopify", "Webflow", "GA4", "HubSpot", "Zapier", "TripleWhale"
+        "Real Madrid", "Man City", "Liverpool", "Bayern Munich", "PSG", "Inter Milan", "Arsenal", "Barcelona", "Leverkusen", "AC Milan"
     ];
 
     return (
@@ -17,13 +17,13 @@ const Industries = () => {
                     {/* HEADER */}
                     <div className="space-y-4 max-w-4xl">
                         <div className="inline-block bg-[#FF3D81] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_black]">
-                            <span className="text-sm font-black uppercase text-white tracking-widest">Our Focus</span>
+                            <span className="text-sm font-black uppercase text-white tracking-widest">Global Reach</span>
                         </div>
                         <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
-                            The Engine Behind <br /> <span className="text-[#3D5CFF]">Our Strategy.</span>
+                            Covering the <br /> <span className="text-[#3D5CFF]">Elite Clubs.</span>
                         </h2>
                         <p className="text-xl md:text-2xl font-bold leading-tight max-w-2xl mx-auto text-black/70">
-                            We leverage the most powerful tools in the market to drive scale and capture data.
+                            We track performance data, transfer rumors, and tactical shifts for the biggest clubs on the planet.
                         </p>
                     </div>
 
@@ -68,7 +68,7 @@ const Industries = () => {
                     <div className="w-full max-w-3xl pt-6 border-t-4 border-black flex flex-col items-center gap-4">
                         <div className="flex items-center gap-3 text-black font-black uppercase italic text-xl">
                             <Zap fill="black" size={24} strokeWidth={3} className="text-[#FFE600]" />
-                            <span>Operationally Ready</span>
+                            <span>Live Match Status: Active</span>
                         </div>
                     </div>
                 </div>
@@ -78,4 +78,3 @@ const Industries = () => {
 };
 
 export default Industries;
-

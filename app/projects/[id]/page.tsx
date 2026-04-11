@@ -7,56 +7,56 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 
-// Project data (can be moved to a shared data file)
+// Football player data
 const projects = [
     {
         id: "01",
-        title: "Retro Future",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Product Design",
-        description: "A deep dive into retro-futurism branding, combining nostalgic elements with modern design principles.",
-        date: "Oct 2023",
-        client: "NeoWave",
-        services: ["Branding", "Web Design", "Photography"]
+        title: "Lionel Messi",
+        image: "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Legend",
+        description: "Widely regarded as the greatest of all time, Messi's career is a masterclass in vision, dribbling, and playmaking. From Barcelona to Miami, the story continues.",
+        date: "Argentina",
+        client: "8 Ballon d'Or",
+        services: ["Playmaking", "Dribbling", "Free Kicks"]
     },
     {
         id: "02",
-        title: "Urban Style",
-        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Fashion Branding",
-        description: "Redefining urban street style with a bold, typographic-led identity system for a new fashion label.",
-        date: "Nov 2023",
-        client: "StreetPulse",
-        services: ["Art Direction", "Identity", "Social Media"]
+        title: "Cristiano Ronaldo",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Goal Machine",
+        description: "The ultimate athlete. Ronaldo redefined the limits of physical preparation and goal-scoring consistency over two decades at the top of European football.",
+        date: "Portugal",
+        client: "900+ Goals",
+        services: ["Finishing", "Aerial Prowess", "Longevity"]
     },
     {
         id: "03",
-        title: "Digital Soul",
-        image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "Creative Content",
-        description: "A digital art exhibition platform showcasing the intersection of human emotion and artificial intelligence.",
-        date: "Dec 2023",
-        client: "Gallery X",
-        services: ["Web Development", "UX/UI", "Naming"]
+        title: "Kylian Mbappé",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The New Era",
+        description: "The fastest rise in football history. A World Cup winner at 19, Mbappé represents the explosive future of the game with his blistering pace and finishing.",
+        date: "France",
+        client: "WC Winner",
+        services: ["Explosive Pace", "Clinical Finishing", "Elite 1v1"]
     },
     {
         id: "04",
-        title: "Technical Wear",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800&h=800",
-        category: "E-commerce",
-        description: "Minimalist e-commerce experience aimed at high-performance technical apparel enthusiasts.",
-        date: "Jan 2024",
-        client: "TechFit",
-        services: ["E-commerce", "Strategy", "Identity"]
+        title: "Erling Haaland",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&q=80&w=800&h=800",
+        category: "The Predator",
+        description: "A scoring cyborg. Haaland's record-breaking residency in the Premier League has proven that some players are simply born to find the back of the net.",
+        date: "Norway",
+        client: "Record Scorer",
+        services: ["Strength", "Positioning", "Ruthless Finishing"]
     }
 ];
 
 // Reusable Image Block Component
-const ImageBlock = ({ bg = "bg-gray-200", label = "Project image", height = "h-[600px]" }) => (
+const ImageBlock = ({ src, bg = "bg-gray-200", label = "Action Shot", height = "h-[600px]" }) => (
     <div className={`w-full ${height} ${bg} rounded-[2rem] flex items-center justify-center relative overflow-hidden group mb-12`}>
         <Image
-            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
-            alt="Abstract Project Detail"
+            src={src || "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2564&auto=format&fit=crop"}
+            alt="Football Action Detail"
             fill
             className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
         />
@@ -67,13 +67,10 @@ const ImageBlock = ({ bg = "bg-gray-200", label = "Project image", height = "h-[
 const ProjectDetail = () => {
     const params = useParams();
     const router = useRouter();
-    // In a real app, you would fetch the specific project based on params.slug or id
-    // For this mock, we'll just display "Urban Style" as the default or find via ID if we had routing set up.
-    // Let's assume we show "Urban Style" details for now as requested by the prompt mockup style.
 
-    // Find project or default to Urban Style
+    // Find player or default to Messi
     const projectId = params.id;
-    const project = projects.find(p => p.id === projectId) || projects[1];
+    const project = projects.find(p => p.id === projectId) || projects[0];
 
     return (
         <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
@@ -85,7 +82,7 @@ const ProjectDetail = () => {
                 className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 bg-white/80 backdrop-blur-md"
             >
                 <Link href="/" className="text-2xl font-bold tracking-tight">
-                    Culture Capsule<span className="text-sm align-top">®</span>
+                    The Beautiful Game<span className="text-sm align-top">®</span>
                 </Link>
                 <button onClick={() => router.back()} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-gray-600 transition-colors">
                     <ArrowLeft size={16} /> Back
@@ -109,7 +106,7 @@ const ProjectDetail = () => {
                         className="text-xl md:text-2xl font-medium leading-relaxed text-gray-600"
                     >
                         {project.description} <br />
-                        Lorem ipsum dolor sit amet consectetur. Velit egestas volutpat dolor scelerisque morbi lectus risus vitae quis. Vestibulum eu suspendisse commodo vel. Pharetra at nisi arcu dui luctus orci pulvinar. Sed faucibus felis dui at tortor iaculis vitae varius magna.
+                        Beyond the trophies and goals lies a player dedicated to the highest level of craft. To understand {project.title.split(' ')[0]} is to understand the very peak of human performance on the football pitch. Every touch, every run, every decision has been refined over thousands of hours.
                     </motion.p>
                 </div>
 
@@ -122,7 +119,7 @@ const ProjectDetail = () => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <ImageBlock height="h-[600px]" />
+                        <ImageBlock height="h-[600px]" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000" />
                     </motion.div>
 
                     {/* Split Layout */}
@@ -133,7 +130,7 @@ const ProjectDetail = () => {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <ImageBlock height="h-[500px]" label="Project image" />
+                            <ImageBlock height="h-[500px]" label="Matchday Focus" src="https://images.unsplash.com/photo-1552318975-27588b3543ba?q=80&w=1000" />
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
@@ -142,9 +139,9 @@ const ProjectDetail = () => {
                             viewport={{ once: true }}
                             className="space-y-6"
                         >
-                            <h3 className="text-3xl font-bold">Lorem ipsum</h3>
+                            <h3 className="text-3xl font-bold">Unrivaled Vision</h3>
                             <p className="text-gray-600 text-lg leading-relaxed">
-                                Lorem ipsum dolor sit amet consectetur. Velit egestas volutpat dolor scelerisque morbi lectus risus vitae quis. Vestibulum eu suspendisse commodo vel. Pharetra at nisi arcu dui luctus orci pulvinar. Sed faucibus felis dui at tortor iaculis vitae varius magna.
+                                Players at this level see the game differently. While we see the ball, they see the space, the movement of the defenders, and the split-second opportunity to change the outcome of a match. It's a psychological advantage as much as a physical one.
                             </p>
                         </motion.div>
                     </div>
@@ -156,7 +153,7 @@ const ProjectDetail = () => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <ImageBlock height="h-[600px]" />
+                        <ImageBlock height="h-[600px]" label="Iconic Moments" src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2000" />
                     </motion.div>
 
                     {/* Another Full Width */}
@@ -166,22 +163,22 @@ const ProjectDetail = () => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <ImageBlock height="h-[600px]" />
+                        <ImageBlock height="h-[600px]" label="The World Stage" src="https://images.unsplash.com/photo-1544698310-74ea9d1c8288?q=80&w=2000" />
                     </motion.div>
                 </div>
 
                 <div className="max-w-3xl mt-20 mb-32">
                     <p className="text-lg text-gray-600 leading-relaxed">
-                        Lorem ipsum dolor sit amet consectetur. Velit egestas volutpat dolor scelerisque morbi lectus risus vitae quis. Vestibulum eu suspendisse commodo vel. Pharetra at nisi arcu dui luctus orci pulvinar. Sed faucibus felis dui at tortor iaculis vitae varius magna.
+                        In conclusion, {project.title} remains a definitive figure in modern football history. To follow their career is to witness the evolution of the game itself—becoming more data-driven, more athletic, and yet still reliant on that singular spark of individual genius.
                     </p>
                 </div>
 
                 {/* Other Projects Section */}
                 <div className="border-t border-gray-200 pt-20 mb-20">
                     <div className="flex justify-between items-end mb-12">
-                        <h2 className="text-4xl font-bold italic">Other Projects</h2>
+                        <h2 className="text-4xl font-bold italic">Other Stars</h2>
                         <Link href="/projects" className="font-bold border-b-2 border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors">
-                            View all projects
+                            View all profiles
                         </Link>
                     </div>
 
@@ -220,7 +217,7 @@ const ProjectDetail = () => {
             </main>
 
             <footer className="py-12 text-center text-sm font-bold uppercase tracking-widest text-gray-400 border-t border-gray-100">
-                Culture Capsule® — All Rights Reserved
+                The Beautiful Game® — All Rights Reserved
             </footer>
         </div>
     );

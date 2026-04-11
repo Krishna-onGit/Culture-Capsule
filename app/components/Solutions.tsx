@@ -1,50 +1,50 @@
 "use client";
 
 import React from 'react';
-import { Layout, Palette, Megaphone, TrendingUp } from 'lucide-react';
+import { Layout, Palette, Megaphone, TrendingUp, Monitor, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MobileSlider from './ui/MobileSlider';
 
 const solutions = [
     {
         id: "01",
-        title: "Paid Ads that Scale Profitably",
-        desc: "High-ROAS campaigns built on deep data and aggressive testing strategies. We own the results, you enjoy the scale.",
+        title: "Live Statistical Tracking",
+        desc: "Real-time xG, possession heatmaps, and player heatmap data refreshed every 10 seconds. Never miss a tactical shift.",
         icon: TrendingUp,
         color: "#FFE600"
     },
     {
         id: "02",
-        title: "Social Content that Converts",
-        desc: "Creating culture-defining content that builds community and drives organic scale without wasting ad spend.",
+        title: "Scouting & Young Talent",
+        desc: "Deep-dive scouting reports on the next generation. From the favelas of Brazil to the academies of Europe.",
         icon: Megaphone,
         color: "#FF3D81"
     },
     {
         id: "03",
-        title: "SEO that Compounds Growth",
-        desc: "Dominating search rankings with content that converts long-term traffic into compounding revenue streams.",
-        icon: TrendingUp,
+        title: "Tactical Breakdowns",
+        desc: "In-depth analysis of manager philosophies. How Klopp’s heavy metal football compares to Pep’s positional play.",
+        icon: Monitor,
         color: "#3D5CFF"
     },
     {
         id: "04",
-        title: "Funnels that Increase Leads",
-        desc: "Turning every click into a lead through scientific A/B testing and high-performance landing page design.",
-        icon: Layout,
+        title: "Transfer Rumor Mill",
+        desc: "Verified insider information on player movements. No clickbait, just confirmed news from top-tier sources.",
+        icon: Zap,
         color: "#FFFFFF"
     },
     {
         id: "05",
-        title: "ROI-Focused Brand Strategy",
-        desc: "Defining your unique edge to stand out in crowded markets and command premium prices with authority.",
+        title: "Legendary Match Vault",
+        desc: "Relive the greatest moments in football history with remastered highlights and tactical retrospectives.",
         icon: Palette,
         color: "#FFE600"
     },
     {
         id: "06",
-        title: "Automation that Saves Time",
-        desc: "Building self-optimizing ecosystems that nurture leads and close sales on autopilot while you sleep.",
+        title: "Championship Predictions",
+        desc: "AI-driven match winner probabilities and league table forecasts based on thousands of data points.",
         icon: Layout,
         color: "#FF3D81"
     }
@@ -58,9 +58,9 @@ const Solutions = () => {
                     <div className="inline-block bg-[#FF3D81] border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <span className="text-sm font-black uppercase text-white tracking-widest">Our Expertise</span>
                     </div>
-                    <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter">Core <br /> <span className="text-[#3D5CFF]">Growth Systems.</span></h2>
+                    <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter">Ultimate <br /> <span className="text-[#3D5CFF]">Match Coverage.</span></h2>
                     <p className="max-w-xl text-xl font-bold leading-tight">
-                        We don&apos;t just do marketing. We build scalable systems that drive predictable revenue.
+                        We don't just report scores. We analyze the soul of the game through data and history.
                     </p>
                 </div>
 
@@ -82,11 +82,11 @@ const Solutions = () => {
                                 </div>
                                 <h3 className="text-xl font-black uppercase leading-[1.1] mb-3 group-hover:text-[#FFE600] transition-colors">{item.title}</h3>
                                 <p className="text-base font-bold leading-tight text-black/70 group-hover:text-white transition-colors">{item.desc}</p>
-                                <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-[#FF3D81] group-hover:text-[#FFE600]">Scale faster with ROI-driven campaigns.</p>
+                                <p className="mt-3 text-[10px] font-black uppercase tracking-widest text-[#FF3D81] group-hover:text-[#FFE600]">Join the 1% who understand the game.</p>
                             </div>
 
                             <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest mt-8 group-hover:translate-x-2 transition-transform">
-                                Learn More
+                                View Section
                                 <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 7.5L14 7.5M14 7.5L8 1.5M14 7.5L8 13.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -115,7 +115,7 @@ const Solutions = () => {
                                 <p className="text-lg font-bold leading-tight text-black/70">{item.desc}</p>
                             </div>
                             <button className="flex items-center gap-2 text-sm font-black uppercase tracking-widest mt-8">
-                                Learn More →
+                                View Section →
                             </button>
                         </div>
                     ))}
@@ -126,5 +126,3 @@ const Solutions = () => {
 };
 
 export default Solutions;
-
-
