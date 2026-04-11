@@ -1,42 +1,42 @@
 "use client";
 
 import React from 'react';
-import { Search, Map, Rocket, BarChart, TrendingUp } from 'lucide-react';
+import { Target, Shield, Trophy, BarChart3, Repeat } from 'lucide-react';
 
 const steps = [
     {
         id: "01",
         title: "Group Stage Battles",
         desc: "Where it all begins. 32 clubs clash in intense group matches to earn their ticket to the knockouts. Every point counts.",
-        icon: Search,
+        icon: Target,
         color: "#FFE600"
     },
     {
         id: "02",
         title: "Knockout Rounds",
         desc: "Two legs, away goals, last-minute drama. The Round of 16 to Semi-Finals is where legends are forged under pressure.",
-        icon: Map,
+        icon: Shield,
         color: "#FF3D81"
     },
     {
         id: "03",
         title: "The Final Showdown",
         desc: "One night. One match. One trophy. The Champions League Final — the most-watched club football event on the planet.",
-        icon: Rocket,
+        icon: Trophy,
         color: "#3D5CFF"
     },
     {
         id: "04",
         title: "Season Stats Analysis",
         desc: "xG, pass completion, pressing intensity, heatmaps — we break down every statistic so you understand the game deeper.",
-        icon: BarChart,
+        icon: BarChart3,
         color: "#FFFFFF"
     },
     {
         id: "05",
         title: "Transfer Window",
         desc: "Who's moving where? Track the biggest transfers, rumor mills, and deadline-day drama that reshapes entire leagues.",
-        icon: TrendingUp,
+        icon: Repeat,
         color: "#FFE600"
     }
 ];

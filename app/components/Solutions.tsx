@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Layout, Palette, Megaphone, TrendingUp, Monitor, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Activity, Binoculars, Layout, ArrowLeftRight, History, Brain } from 'lucide-react';
 import MobileSlider from './ui/MobileSlider';
 
 const solutions = [
@@ -10,42 +10,42 @@ const solutions = [
         id: "01",
         title: "Live Statistical Tracking",
         desc: "Real-time xG, possession heatmaps, and player heatmap data refreshed every 10 seconds. Never miss a tactical shift.",
-        icon: TrendingUp,
+        icon: Activity,
         color: "#FFE600"
     },
     {
         id: "02",
         title: "Scouting & Young Talent",
         desc: "Deep-dive scouting reports on the next generation. From the favelas of Brazil to the academies of Europe.",
-        icon: Megaphone,
+        icon: Binoculars,
         color: "#FF3D81"
     },
     {
         id: "03",
         title: "Tactical Breakdowns",
         desc: "In-depth analysis of manager philosophies. How Klopp’s heavy metal football compares to Pep’s positional play.",
-        icon: Monitor,
+        icon: Layout,
         color: "#3D5CFF"
     },
     {
         id: "04",
         title: "Transfer Rumor Mill",
         desc: "Verified insider information on player movements. No clickbait, just confirmed news from top-tier sources.",
-        icon: Zap,
+        icon: ArrowLeftRight,
         color: "#FFFFFF"
     },
     {
         id: "05",
         title: "Legendary Match Vault",
         desc: "Relive the greatest moments in football history with remastered highlights and tactical retrospectives.",
-        icon: Palette,
+        icon: History,
         color: "#FFE600"
     },
     {
         id: "06",
         title: "Championship Predictions",
         desc: "AI-driven match winner probabilities and league table forecasts based on thousands of data points.",
-        icon: Layout,
+        icon: Brain,
         color: "#FF3D81"
     }
 ];
