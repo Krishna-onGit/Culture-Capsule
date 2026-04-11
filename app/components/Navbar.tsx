@@ -22,8 +22,8 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b-4 border-black py-4 md:py-5`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-24 flex items-center justify-between">
-        <Link href="/" className="text-3xl font-black uppercase tracking-tighter text-black">
-          The Beautiful Game<span className="text-sm align-top font-bold">®</span>
+        <Link href="/" className="text-3xl font-black uppercase tracking-tighter text-black flex items-center gap-2">
+          <span className="italic">⚽</span> The Beautiful Game<span className="text-sm align-top font-bold">®</span>
         </Link>
 
         {/* Desktop Menu */}

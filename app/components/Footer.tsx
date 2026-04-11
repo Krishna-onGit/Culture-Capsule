@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-24">
                     <div className="lg:col-span-4 space-y-8">
                         <Link href="/" className="text-5xl font-black uppercase tracking-tighter block leading-none">
-                            The Beautiful <br /> Game<span className="text-sm align-top leading-none">®</span>
+                            ⚽ The Beautiful <br /> Game<span className="text-sm align-top leading-none">®</span>
                         </Link>
                         <p className="text-white/70 max-w-sm font-bold text-lg leading-tight uppercase">
                             Your global home for football culture — breaking down the tactics, stories, and stats that move billions.
