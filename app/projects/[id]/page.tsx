@@ -52,7 +52,14 @@ const projects = [
 ];
 
 // Reusable Image Block Component
-const ImageBlock = ({ src, bg = "bg-gray-200", label = "Action Shot", height = "h-[600px]" }) => (
+interface ImageBlockProps {
+    src: string;
+    bg?: string;
+    label?: string;
+    height?: string;
+}
+
+const ImageBlock = ({ src, bg = "bg-gray-200", label = "Action Shot", height = "h-[600px]" }: ImageBlockProps) => (
     <div className={`w-full ${height} ${bg} rounded-[2rem] flex items-center justify-center relative overflow-hidden group mb-12`}>
         <Image
             src={src || "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2564&auto=format&fit=crop"}
