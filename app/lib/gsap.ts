@@ -52,7 +52,25 @@ if (typeof window !== "undefined") {
  * there the scroll mapping is the navigation, and removing it would strand
  * content the visitor has no other way to reach.
  */
-export const MOTION_OK = "(prefers-reduced-motion: no-preference)";
+/**
+ * Written as "not reduce" rather than "is no-preference", and the difference is
+ * not cosmetic.
+ *
+ * `(prefers-reduced-motion: no-preference)` is FALSE in three situations: the
+ * visitor asked for reduced motion, the browser does not support the feature at
+ * all, and any engine that reports the feature as an unset/empty value. Only the
+ * first of those is a request for less motion — in the other two the old query
+ * silently deleted every entrance animation, every DrawSVG reveal and every
+ * parallax on the page, because a `.from()` that is never created is a section
+ * that never moves. Negating `reduce` fails open instead: motion is suppressed
+ * only when it has actually been asked for.
+ *
+ * If you are testing and the page looks completely static, check the OS setting
+ * first — Windows: Settings › Accessibility › Visual effects › Animation
+ * effects; macOS: System Settings › Accessibility › Display › Reduce motion.
+ * DevTools can force it too: Rendering panel › Emulate prefers-reduced-motion.
+ */
+export const MOTION_OK = "not all and (prefers-reduced-motion: reduce)";
 
 export {
   gsap,
