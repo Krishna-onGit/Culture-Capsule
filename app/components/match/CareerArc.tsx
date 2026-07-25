@@ -2,13 +2,22 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, ScrollTrigger, MOTION_OK } from "../../lib/gsap";
-import { CAREERS } from "../../lib/data";
+import { drawRules, revealLines, revealBatch, parallax, disposeAll } from "../../lib/reveal";
+import { CAREERS, CAREER_TOTALS } from "../../lib/data";
 import { useNearViewport } from "../../lib/useFootball";
 import Crest from "../ui/Crest";
 
 const career = CAREERS[0];
 const N = career.nodes.length;
-const FINAL = career.nodes[N - 1].totals!;
+/** The last stop is the career to date, so the rail counts up to the same
+ *  total the Numbers section quotes. Never hard-code it in two places. */
+const FINAL = CAREER_TOTALS;
+
+/** Clubs on the line, counted rather than typed — it read "4" while the arc
+ *  showed three (La Masia and Camp Nou are the same club). */
+const CLUBS = new Set(
+  career.nodes.filter((n) => n.query && n.query !== "Argentina").map((n) => n.query)
+).size;
 
 /** Alternating x positions (percent of width) give the line its meander. */
 const X = (i: number) => (i % 2 === 0 ? 30 : 70);
@@ -75,12 +84,13 @@ export default function CareerArc() {
             .from(row.querySelector(".arc-stat"), { opacity: 0, duration: 0.6 }, 0.25);
         });
 
-        gsap.from(".arc-head > *", {
-          yPercent: 105,
-          duration: 1,
-          stagger: 0.08,
-          scrollTrigger: { trigger: ".arc-head", start: "top 80%" },
-        });
+        return disposeAll(
+          drawRules(root.current),
+          revealLines([".arc-head h2", ".arc-head .prose-tight"]),
+          revealBatch(".arc-head .stat", { y: 18, stagger: 0.06, batchMax: 3 }),
+          // the oversized ghost figures drift against the cards they sit behind
+          parallax(root.current)
+        );
       });
 
       // Counters are information, not decoration — they run in every motion mode.
@@ -115,7 +125,7 @@ export default function CareerArc() {
   );
 
   return (
-    <section ref={root} id="arc" className="relative bg-[var(--concrete)] pt-[7svh] pb-[9svh]">
+    <section ref={root} id="arc" className="relative bg-[var(--concrete)] pt-block pb-lede">
       <div className="shell">
         <div className="rule" />
         <div className="flex items-baseline justify-between pt-3">
@@ -125,16 +135,16 @@ export default function CareerArc() {
 
         {/* Header fills the full measure: the title alone left a two-thirds-empty
             band across anything wider than about 1400px. */}
-        <header className="arc-head mt-[7svh] grid items-end gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <header className="arc-head mt-lede grid items-end gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <h2 className="display overflow-hidden text-[clamp(2.75rem,9vw,9rem)] leading-[0.8]">
             <span className="block">{career.name}</span>
           </h2>
-          <div className="overflow-hidden pb-2">
+          <div className="pb-2">
             <p className="prose-tight block">{career.tagline}</p>
             <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-[var(--line)] pt-4">
               <div className="stat">
                 <dt>Clubs</dt>
-                <dd>4</dd>
+                <dd>{CLUBS}</dd>
               </div>
               <div className="stat">
                 {/* derived from the data, not from Date.now(), so server and
@@ -151,7 +161,7 @@ export default function CareerArc() {
         </header>
 
         {/* sticky running totals */}
-        <div className="sticky top-0 z-20 -mx-[var(--gut)] mt-[6svh] border-y border-[var(--line)] bg-[var(--concrete)]/92 px-[var(--gut)] py-3 backdrop-blur-sm">
+        <div className="sticky top-0 z-20 -mx-[var(--gut)] mt-block border-y border-[var(--line)] bg-[var(--concrete)]/92 px-[var(--gut)] py-3 backdrop-blur-sm">
           <dl className="flex items-end justify-between gap-4">
             <div className="stat">
               <dt>Appearances</dt>
@@ -164,7 +174,7 @@ export default function CareerArc() {
               <dt>Goals</dt>
               <dd>
                 <span ref={goalsRef}>0</span>
-                <span className="text-[var(--grey)]">/{FINAL.goals}</span>
+                <span className="text-[var(--grey)]">/{FINAL.goals.toLocaleString("en-GB")}</span>
               </dd>
             </div>
             <div className="stat">
@@ -178,7 +188,7 @@ export default function CareerArc() {
         </div>
 
         {/* ---- the arc ---- */}
-        <div className="arc-body relative mt-[6svh]">
+        <div className="arc-body relative mt-block">
           <svg
             aria-hidden
             className="pointer-events-none absolute inset-0 h-full w-full"
@@ -222,14 +232,25 @@ export default function CareerArc() {
                   </span>
                 )}
 
-                {/* big ghost stat on the empty side */}
+                {/* Big ghost stat on the empty side.
+                    Two elements, deliberately: the outer one owns the centring
+                    and the inner one owns the transform. Parallax writes an
+                    inline `transform`, which would otherwise replace the
+                    -translate-y-1/2 that was doing the centring and drop the
+                    figure half a row. Position on the parent, motion on the
+                    child — always. */}
                 <span
                   aria-hidden
-                  className={`arc-stat display pointer-events-none absolute top-1/2 -translate-y-1/2 text-[12vw] leading-none text-[var(--ink)] opacity-[0.07] ${
+                  className={`pointer-events-none absolute inset-y-0 flex items-center ${
                     left ? "right-0" : "left-0"
                   }`}
                 >
-                  {node.stat}
+                  <span
+                    data-parallax="0.16"
+                    className="arc-stat display block text-[12vw] leading-none text-[var(--ink)] opacity-[0.07]"
+                  >
+                    {node.stat}
+                  </span>
                 </span>
 
                 <div
@@ -270,8 +291,11 @@ export default function CareerArc() {
           })}
         </div>
 
-        <p className="data mt-8 text-[var(--grey)]">
-          Totals are career running figures at each stop, senior club and country combined.
+        <p className="data mt-block max-w-[70ch] leading-relaxed text-[var(--grey)]">
+          Totals are running career figures at each stop — senior club and country
+          combined, so they include the season table at 48′. The closed spells are
+          exact; the stops in between are rounded, and the last one is the career to
+          date.
         </p>
       </div>
     </section>

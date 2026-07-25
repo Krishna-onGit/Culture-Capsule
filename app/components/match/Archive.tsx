@@ -215,8 +215,13 @@ export default function Archive() {
           <div className="rule" />
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3">
             <span className="data">12′ — The Archive</span>
-            <span className="data hidden text-[var(--grey)] lg:block">
-              Eight matches that changed what came after
+            {/* Two things the visitor cannot work out from the panels alone:
+                what the set is, and that scrolling moves it sideways. The
+                second was only shown above 1280px, which is exactly backwards —
+                the horizontal conceit starts at 768px. */}
+            <span className="data hidden text-[var(--grey)] md:block">
+              {MOMENTS.length} matches that changed what came after
+              <span className="ml-2 hidden lg:inline">· keep scrolling, it moves sideways</span>
             </span>
             <span className="data-lg text-sm">
               {String(index + 1).padStart(2, "0")}
@@ -265,7 +270,7 @@ export default function Archive() {
               /* pb-28 on desktop keeps the last line of copy clear of the fixed
                  match clock in the bottom-left corner — on a short viewport the
                  closing paragraph was running underneath it. */
-              className="moment relative flex w-full shrink-0 flex-col justify-center overflow-hidden border-b border-[var(--line)] px-[var(--gut)] py-16 md:h-full md:w-[76vw] md:border-b-0 md:border-r md:py-0 md:pt-28 md:pb-28 lg:w-[66vw]"
+              className="moment relative flex w-full shrink-0 flex-col justify-center overflow-hidden border-b border-[var(--line)] px-[var(--gut)] py-block md:h-full md:w-[76vw] md:border-b-0 md:border-r md:pt-28 md:pb-28 lg:w-[66vw]"
             >
               {/* Atmosphere plate. Duotoned down to the concrete palette and kept
                   well under the type — the source images are small, and at this

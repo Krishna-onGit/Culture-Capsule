@@ -19,6 +19,26 @@
   --color-signal: #e8ff3d;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------- Vertical rhythm ----------
+     One scale for the whole page, in four steps. Every section used to invent
+     its own gaps out of 6/7/8/9/12svh, which had two problems: nothing lined up
+     between sections, and spacing keyed to viewport HEIGHT drifts out of
+     proportion with a type scale keyed to viewport WIDTH — the same layout
+     opened up on a short wide monitor and crushed on a tall narrow one.
+
+     Fluid on width, so space and type grow together.
+
+       step  — inside a block (rail to content, figure to note, section top)
+       block — between blocks that belong to the same idea; section bottom
+       lede  — a section's meta rail to its headline, and headline to content
+
+     Three steps, deliberately. A fourth existed briefly and nothing reached for
+     it, which is the signal that the page does not have a fourth level of
+     structure to express. */
+  --spacing-step: clamp(1.25rem, 2vw, 2rem);
+  --spacing-block: clamp(2.5rem, 4.5vw, 4.5rem);
+  --spacing-lede: clamp(4rem, 7vw, 8rem);
 }
 
 :root {

@@ -3,8 +3,16 @@
 import { useRef } from "react";
 import { gsap, useGSAP, SplitText, MOTION_OK } from "../../lib/gsap";
 import { FIXTURES, CONTENDERS, TIERS, PENALTY_REALITY, MOMENTS } from "../../lib/data";
+import { drawRules, revealBatch, disposeAll } from "../../lib/reveal";
 import { useSession } from "../../lib/session";
 import { scrollToEl, scrollToTop } from "../../lib/scroll";
+
+/** Minutes are quoted back to the visitor as directions, so they are read from
+ *  FIXTURES rather than typed — this copy said 61′ while The Spot sat at 66′. */
+const minuteOf = (id: string) => FIXTURES.find((f) => f.id === id)!.minute;
+
+/** Below this, a conversion rate is noise rather than a verdict. */
+const VERDICT_MIN_SHOTS = 5;
 
 /**
  * 90+' — FULL TIME
@@ -36,23 +44,17 @@ export default function FullTime() {
           scrollTrigger: { trigger: root.current, start: "top 70%" },
         });
 
-        gsap.from(".ft-row", {
-          opacity: 0,
-          y: 20,
-          duration: 0.8,
-          stagger: 0.06,
-          scrollTrigger: { trigger: ".ft-index", start: "top 85%" },
-        });
+        const cleanup = disposeAll(
+          drawRules(root.current),
+          // the index reads out one fixture at a time, like a results service
+          revealBatch(".ft-row", { y: 20, stagger: 0.05, batchMax: 8 }),
+          revealBatch(".ft-card", { y: 26, stagger: 0.1, batchMax: 3 })
+        );
 
-        gsap.from(".ft-card", {
-          opacity: 0,
-          y: 24,
-          duration: 0.8,
-          stagger: 0.1,
-          scrollTrigger: { trigger: ".ft-report", start: "top 85%" },
-        });
-
-        return () => split.revert();
+        return () => {
+          split.revert();
+          cleanup();
+        };
       });
 
       return () => mm.revert();
@@ -64,7 +66,7 @@ export default function FullTime() {
     <footer
       ref={root}
       id="fulltime"
-      className="relative flex min-h-svh flex-col justify-between overflow-hidden bg-[var(--ink)] pt-8 pb-20 text-[var(--concrete)]"
+      className="relative flex min-h-svh flex-col justify-between overflow-hidden bg-[var(--ink)] pt-step pb-block text-[var(--concrete)]"
     >
       <div className="shell">
         <div className="rule-invert" />
@@ -84,12 +86,13 @@ export default function FullTime() {
 
       {/* ---- your match report ---- */}
       <div className="shell">
-        <div className="ft-report rule-invert grid gap-6 pt-6 md:grid-cols-3">
+        <div className="ft-report rule-invert grid gap-6 pt-step md:grid-cols-3">
           <div className="ft-card">
             <span className="data block text-[var(--signal)]">Your penalties</span>
             {taken === 0 ? (
               <p className="mt-3 text-sm leading-relaxed text-[var(--grey-invert)]">
-                You never took one. The spot is still there at 61′ if you want it.
+                You never took one. The spot is still there at {minuteOf("penalty")}′ if
+                you want it.
               </p>
             ) : (
               <>
@@ -100,11 +103,15 @@ export default function FullTime() {
                 <p className="mt-2 text-sm leading-relaxed text-[var(--grey-invert)]">
                   {Math.round(rate * 100)}% converted, against a real-world rate of{" "}
                   {Math.round(PENALTY_REALITY.conversion * 100)}%.{" "}
-                  {rate > PENALTY_REALITY.conversion
-                    ? "You would be taking them in a final."
-                    : rate === 0
-                      ? "Every keeper guessed right. That happens."
-                      : "The keeper had the better of it."}
+                  {/* A verdict off one or two kicks is a coin toss, not a
+                      judgement — say so instead of crowning them. */}
+                  {taken < VERDICT_MIN_SHOTS
+                    ? `Too few to mean anything yet — take ${VERDICT_MIN_SHOTS - taken} more.`
+                    : rate > PENALTY_REALITY.conversion
+                      ? "You would be taking them in a final."
+                      : rate === 0
+                        ? "Every keeper guessed right. That happens."
+                        : "The keeper had the better of it."}
                 </p>
               </>
             )}
@@ -114,7 +121,8 @@ export default function FullTime() {
             <span className="data block text-[var(--signal)]">Your verdict</span>
             {ranked === 0 ? (
               <p className="mt-3 text-sm leading-relaxed text-[var(--grey-invert)]">
-                You ranked nobody. Diplomatic, but the argument at 78′ is unresolved.
+                You ranked nobody. Diplomatic, but the argument at {minuteOf("tierlist")}′
+                is unresolved.
               </p>
             ) : (
               <>
@@ -155,7 +163,7 @@ export default function FullTime() {
 
       {/* index of the match */}
       <div className="shell">
-        <div className="ft-index rule-invert grid gap-x-8 gap-y-1 pt-4 md:grid-cols-[1fr_auto]">
+        <div className="ft-index rule-invert grid gap-x-8 gap-y-1 pt-step md:grid-cols-[1fr_auto]">
           <div>
             {FIXTURES.map((f) => (
               <button
@@ -184,7 +192,7 @@ export default function FullTime() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-baseline justify-between gap-4">
+        <div className="mt-block flex flex-wrap items-baseline justify-between gap-4">
           <span className="data text-[var(--grey-invert)]">
             Ninety — a frontend piece about football
           </span>
