@@ -2,6 +2,14 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "../../lib/gsap";
+import { scrollDrivenLoop, disposeAll } from "../../lib/reveal";
+import { MOMENTS } from "../../lib/data";
+
+/** Half-time results service — read off the archive rather than retyped, so a
+ *  moment can never be edited upstairs and still scroll past here unchanged. */
+const RESULTS = MOMENTS.map(
+  (m) => `${m.year} ${m.teams[0].code} ${m.score} ${m.teams[1].code}`
+);
 
 /**
  * 45' — HALF TIME
@@ -52,11 +60,23 @@ export default function HalfTime() {
           0
         );
 
-      // The ticker runs continuously and independent of scroll, so it is pure
-      // decoration — the one thing that must not run under reduced motion.
+      // The ticker runs continuously, so it is pure decoration — the one thing
+      // that must not run under reduced motion.
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.to(".ht-ticker-inner", { xPercent: -50, repeat: -1, duration: 26, ease: "none" });
+        const loop = gsap.to(".ht-ticker-inner", {
+          xPercent: -50,
+          repeat: -1,
+          duration: 26,
+          ease: "none",
+        });
+
+        // ...but it is no longer *independent* of scroll. It accelerates with
+        // the wheel and runs backwards when the page does, then eases back to
+        // its resting pace — so the one section with nothing to read still
+        // responds to the visitor, and the interval feels driven rather than
+        // merely waited out.
+        return disposeAll(scrollDrivenLoop(loop), () => loop.kill());
       });
 
       return () => mm.revert();
@@ -87,11 +107,17 @@ export default function HalfTime() {
           Half<span className="text-[var(--signal)]">·</span>Time
         </h2>
 
+        {/* The team talk. It has to describe the half that actually follows —
+            two more evidence sections before anything is handed over, not an
+            immediate free-for-all. */}
         <div className="ht-note shell absolute inset-x-0 mx-auto max-w-[52ch] text-center">
           <p className="prose-tight mx-auto">
-            Everything so far already happened. Nothing in the second half has.
+            The first half belonged to everybody. The second narrows to one career,
+            then hands you the ball.
           </p>
-          <p className="data mt-6 text-[var(--signal)]">The rest of this one is yours</p>
+          <p className="data mt-6 text-[var(--signal)]">
+            The evidence, then the arc, then your turn
+          </p>
         </div>
       </div>
 
@@ -100,16 +126,7 @@ export default function HalfTime() {
         <div className="ht-ticker-inner flex w-max">
           {[0, 1].map((dup) => (
             <div key={dup} className="flex shrink-0" aria-hidden={dup === 1}>
-              {[
-                "1950 BRA 1–2 URU",
-                "1970 BRA 4–1 ITA",
-                "1986 ARG 2–1 ENG",
-                "1999 MUN 2–1 BAY",
-                "2005 LIV 3–3 MIL",
-                "2012 MCI 3–2 QPR",
-                "2014 BRA 1–7 GER",
-                "2022 ARG 3–3 FRA",
-              ].map((s) => (
+              {RESULTS.map((s) => (
                 <span key={s} className="data mx-8 whitespace-nowrap text-[var(--grey-invert)]">
                   {s}
                 </span>

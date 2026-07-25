@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from "react";
 import { gsap, useGSAP, Draggable, MOTION_OK } from "../../lib/gsap";
+import { drawRules, revealLines, revealBatch, disposeAll } from "../../lib/reveal";
 import { PENALTY_REALITY } from "../../lib/data";
 import { session, useSession } from "../../lib/session";
 
@@ -38,12 +39,16 @@ function keeperGuess(history: number[]): number {
 }
 
 /**
- * 61' — THE SPOT
+ * 66' — THE SPOT
  * Drag the ball to aim and release, or pick a corner. The keeper guesses
  * independently, so the outcome is honestly random rather than scripted.
  *
  * Every shot is also plotted against where penalties actually go in real
  * matches — the toy is the way into the data, not a substitute for it.
+ *
+ * Shots accumulate for the whole visit: the five-kick shootout is a window over
+ * `shots`, never a separate counter, and nothing here clears the record — Full
+ * Time reads it back at the end.
  */
 export default function PenaltyBox() {
   const root = useRef<HTMLElement>(null);
@@ -64,6 +69,14 @@ export default function PenaltyBox() {
   const [aim, setAim] = useState<number | null>(null);
   /** Mirrors `busy.current` for rendering, so the goal can show it is mid-kick. */
   const [busyUI, setBusyUI] = useState(false);
+  /**
+   * Shot count at which the visitor dismissed the end-of-shootout card.
+   * The card used to close by calling session.resetShots(), which threw away
+   * every kick they had taken — the all-time counter in this section's own
+   * header dropped to 0/0 and Full Time's match report went blank. Dismissing
+   * is now purely local; the next kick starts the next round on its own.
+   */
+  const [dismissedAt, setDismissedAt] = useState<number | null>(null);
   const { shots, outcomes, scored } = useSession();
   const taken = shots.length;
   /** Read inside GSAP callbacks, which close over the first render's values. */
@@ -74,7 +87,9 @@ export default function PenaltyBox() {
   const kicksThisRound = taken === 0 ? 0 : ((taken - 1) % ROUND) + 1;
   const roundOutcomes = outcomes.slice(taken - kicksThisRound);
   const roundScored = roundOutcomes.filter(Boolean).length;
-  const roundOver = kicksThisRound === ROUND;
+  const roundOver = kicksThisRound === ROUND && dismissedAt !== taken;
+  /** Which shootout this is, so the card doesn't just say "complete" forever. */
+  const roundNo = Math.ceil(taken / ROUND);
 
   /** How often the visitor picked each zone, for the comparison chart. */
   const mine = ZONES.map((_, i) => (taken ? shots.filter((s) => s === i).length / taken : 0));
@@ -209,18 +224,6 @@ export default function PenaltyBox() {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.from(".pk-head > *", {
-          yPercent: 105,
-          duration: 1,
-          stagger: 0.08,
-          scrollTrigger: { trigger: root.current, start: "top 72%" },
-        });
-        gsap.from(".pk-stage", {
-          opacity: 0,
-          y: 40,
-          duration: 1.1,
-          scrollTrigger: { trigger: ".pk-stage", start: "top 82%" },
-        });
         // the reality bars grow from the baseline
         gsap.from(".pk-bar", {
           scaleY: 0,
@@ -230,6 +233,16 @@ export default function PenaltyBox() {
           ease: "power3.out",
           scrollTrigger: { trigger: ".pk-chart", start: "top 85%" },
         });
+
+        return disposeAll(
+          drawRules(root.current),
+          revealLines([".pk-head h2", ".pk-head .prose-tight"]),
+          revealBatch(".pk-head .stat", { y: 18, stagger: 0.06, batchMax: 3 }),
+          // the goal itself arrives last and from further away — it is the
+          // thing the section is actually for
+          revealBatch(".pk-stage", { y: 44, duration: 1.1 }),
+          revealBatch(".pk-chart .kv", { y: 14, stagger: 0.05, batchMax: 4 })
+        );
       });
 
       const [drag] = Draggable.create(ballRef.current, {
@@ -289,7 +302,7 @@ export default function PenaltyBox() {
   const myRate = taken ? scored / taken : 0;
 
   return (
-    <section ref={root} id="penalty" className="relative bg-[var(--concrete)] py-[12svh]">
+    <section ref={root} id="penalty" className="relative bg-[var(--concrete)] pt-block pb-lede">
       <div className="shell">
         <div className="rule" />
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 pt-3">
@@ -324,11 +337,11 @@ export default function PenaltyBox() {
           </span>
         </div>
 
-        <header className="pk-head mt-[7svh] grid items-end gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <header className="pk-head mt-lede grid items-end gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <h2 className="display overflow-hidden text-[clamp(2.75rem,9vw,9rem)] leading-[0.8]">
             <span className="block">Twelve Yards</span>
           </h2>
-          <div className="overflow-hidden pb-2">
+          <div className="pb-2">
             <p className="prose-tight block">
               Drag the ball where you want it and let go, or just pick a corner. The
               keeper guesses at the same instant you strike it — and it remembers where
@@ -351,7 +364,7 @@ export default function PenaltyBox() {
           </div>
         </header>
 
-        <div className="mt-[8svh] grid gap-x-12 gap-y-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <div className="mt-lede grid gap-x-12 gap-y-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           {/* ---- stage ---- capped so the goal keeps sane proportions on ultrawide */}
           <div className="pk-stage relative w-full max-w-[46rem] select-none justify-self-center">
             <svg
@@ -449,7 +462,9 @@ export default function PenaltyBox() {
             {/* end-of-shootout verdict, measured against the real-world rate */}
             {roundOver && (
               <div className="mb-8 border border-[var(--ink)] bg-[var(--concrete-dim)] p-4">
-                <span className="data block text-[var(--grey)]">Shootout complete</span>
+                <span className="data block text-[var(--grey)]">
+                  Shootout {String(roundNo).padStart(2, "0")} complete
+                </span>
                 <p className="display mt-1 text-[clamp(1.75rem,3.5vw,2.75rem)] leading-none">
                   {roundScored} of {ROUND}
                 </p>
@@ -462,9 +477,13 @@ export default function PenaltyBox() {
                       ? "Exactly the professional rate."
                       : "The keeper had the better of that one."}
                 </p>
-                <button onClick={() => session.resetShots()} className="btn mt-4 cursor-pointer">
+                {/* Dismiss only. Your record carries on down the page to Full Time. */}
+                <button onClick={() => setDismissedAt(taken)} className="btn mt-4 cursor-pointer">
                   Take five more
                 </button>
+                <p className="data mt-3 text-[var(--grey)]">
+                  Your all-time record is kept — Full Time reads it back.
+                </p>
               </div>
             )}
 
@@ -481,8 +500,10 @@ export default function PenaltyBox() {
             </h3>
             <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-[var(--ink)]/75">
               Roughly {pct(PENALTY_REALITY.conversion)} of penalties are scored at the top level.
-              Takers overwhelmingly favour the bottom corners — and the middle of the goal
-              is the worst place to put it, despite the keeper usually leaving.
+              Takers overwhelmingly favour the bottom corners, and they are wrong to:
+              height beats width. Every one of the three high targets outscores every one
+              of the low ones, and the worst place on the goal is along the ground down
+              the middle.
             </p>
 
             <div className="mt-8 grid grid-cols-6 items-end gap-2" style={{ height: "10rem" }}>
