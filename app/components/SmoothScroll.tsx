@@ -1,45 +1,55 @@
 "use client";
 
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+import { gsap, ScrollTrigger } from "../lib/gsap";
+import { registerLenis } from "../lib/scroll";
 
+/**
+ * Lenis drives the real window scroll, so ScrollTrigger needs no scrollerProxy —
+ * it only needs updating on every Lenis frame, and Lenis must be stepped from
+ * exactly ONE raf source.
+ *
+ * (The previous version ran both a bare requestAnimationFrame loop and
+ * gsap.ticker, stepping Lenis twice per frame, and its cleanup removed a
+ * function that had never been added to the ticker.)
+ */
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
-    useEffect(() => {
-        // Register GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        // Initialize Lenis
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2,
-        });
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.8,
+    });
 
-        function raf(time: number) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+    registerLenis(lenis);
+    lenis.on("scroll", ScrollTrigger.update);
 
-        // Sync ScrollTrigger with Lenis
-        lenis.on('scroll', ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
+    // Two separate reasons the first measurement is wrong:
+    //  - fonts land after first paint and shift layout;
+    //  - the pinned sections each add thousands of pixels of pin spacing as
+    //    their own effects run, and every trigger created before that point
+    //    cached start/end values from a much shorter document.
+    // A refresh once everything has mounted and settled fixes both.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+    const settle = window.setTimeout(() => ScrollTrigger.refresh(), 400);
+    window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
 
-        gsap.ticker.lagSmoothing(0);
+    return () => {
+      window.clearTimeout(settle);
+      gsap.ticker.remove(tick);
+      gsap.ticker.lagSmoothing(500, 33);
+      registerLenis(null);
+      lenis.destroy();
+    };
+  }, []);
 
-        return () => {
-            lenis.destroy();
-            gsap.ticker.remove(raf);
-        };
-    }, []);
-
-    return <>{children}</>;
+  return <>{children}</>;
 }
-

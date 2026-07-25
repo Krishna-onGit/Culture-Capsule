@@ -5,6 +5,11 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    // gsap's index.d.ts references its plugin type files in lowercase, while the
+    // documented deep imports ("gsap/Draggable") are capitalised. Without this,
+    // TS1149 fires on case-insensitive filesystems and forces a "gsap/all" import,
+    // which would bundle every plugin instead of the nine we actually use.
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
