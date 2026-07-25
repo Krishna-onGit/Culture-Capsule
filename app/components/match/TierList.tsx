@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback, memo } from "react";
 import { gsap, useGSAP, Draggable, Flip, MOTION_OK } from "../../lib/gsap";
+import { drawRules, revealLines, revealBatch, disposeAll } from "../../lib/reveal";
 import { CONTENDERS, TIERS, type Contender } from "../../lib/data";
 import { usePlayer, useNearViewport } from "../../lib/useFootball";
 import { session } from "../../lib/session";
@@ -93,6 +94,7 @@ const Dossier = memo(function Dossier({
           </span>
           <span className="data mt-1 block text-[var(--grey)]">
             {contender.country} · {contender.era}
+            {contender.ongoing && <span className="ml-2 text-[var(--ink)]">ongoing</span>}
           </span>
           <p className="mt-2 text-xs leading-relaxed text-[var(--ink)]/75">{contender.claim}</p>
         </div>
@@ -239,25 +241,13 @@ export default function TierList() {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.from(".tl-head > *", {
-          yPercent: 105,
-          duration: 1,
-          stagger: 0.08,
-          scrollTrigger: { trigger: root.current, start: "top 72%" },
-        });
-        gsap.from(".tl-tier", {
-          opacity: 0,
-          x: -30,
-          duration: 0.8,
-          stagger: 0.1,
-          scrollTrigger: { trigger: ".tl-board", start: "top 80%" },
-        });
-        gsap.from(".tl-dossier", {
-          opacity: 0,
-          y: 24,
-          duration: 0.8,
-          scrollTrigger: { trigger: ".tl-board", start: "top 80%" },
-        });
+        return disposeAll(
+          drawRules(root.current),
+          revealLines([".tl-head h2", ".tl-head .prose-tight"]),
+          // tiers drop in top-down so the board reads as a ladder being built
+          revealBatch(".tl-tier", { y: 30, stagger: 0.09, batchMax: 3 }),
+          revealBatch(".tl-dossier", { y: 24 })
+        );
       });
       return () => mm.revert();
     },
@@ -267,7 +257,7 @@ export default function TierList() {
   const ranked = Object.values(placement).filter(Boolean).length;
 
   return (
-    <section ref={root} id="tierlist" className="relative bg-[var(--concrete)] py-[12svh]">
+    <section ref={root} id="tierlist" className="relative bg-[var(--concrete)] pt-block pb-lede">
       <div className="shell">
         <div className="rule" />
         <div className="flex items-baseline justify-between pt-3">
@@ -277,11 +267,11 @@ export default function TierList() {
           </span>
         </div>
 
-        <header className="tl-head mt-[8svh] flex flex-wrap items-end justify-between gap-6">
+        <header className="tl-head mt-lede flex flex-wrap items-end justify-between gap-6">
           <h2 className="display type-xl overflow-hidden">
             <span className="block">Settle It</span>
           </h2>
-          <p className="max-w-[44ch] overflow-hidden">
+          <p className="max-w-[44ch]">
             <span className="prose-tight block">
               We are not going to tell you who the best is. Drag a name into a tier, or
               click it to cycle through them. The figures are there to argue with.
@@ -289,7 +279,7 @@ export default function TierList() {
           </p>
         </header>
 
-        <div className="tl-board mt-[8svh] grid gap-x-10 gap-y-8 lg:grid-cols-[1fr_20rem] lg:items-start">
+        <div className="tl-board mt-lede grid gap-x-10 gap-y-8 lg:grid-cols-[1fr_20rem] lg:items-start">
           <div>
             <div className="border-t border-[var(--ink)]">
               {TIERS.map((tier, i) => (
@@ -357,8 +347,9 @@ export default function TierList() {
             <span className="data mb-3 block text-[var(--grey)]">Dossier</span>
             <Dossier contender={focus} active={near} />
             <p className="data mt-3 leading-relaxed text-[var(--grey)]">
-              Goals are senior career totals, club and country. Hover any name to load
-              its record.
+              Goals are senior career totals, club and country — the same figure the
+              Numbers section at 48′ arrives at. Careers still in progress are marked
+              ongoing and will move. Hover any name to load its record.
             </p>
           </aside>
         </div>
