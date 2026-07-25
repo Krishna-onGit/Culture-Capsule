@@ -1,10 +1,14 @@
 /**
  * All site content lives here. One shape per concept, no duplication.
  *
- * Editorial rule for this project: we do not use photographs of real people,
- * and we do not invent quotes, endorsements or affiliations. Every moment
- * below is a documented, checkable fact. The visuals are typography and
- * diagrams — which is also the point of the design language.
+ * Editorial rules for this project:
+ *  - No invented quotes, endorsements or affiliations. Every moment below is a
+ *    documented, checkable fact.
+ *  - The only images of people are the official player portraits TheSportsDB
+ *    returns for the player being named. No stock photography stands in for
+ *    anyone. The rest of the visual language is typography and diagrams.
+ *  - One number, one source. Career figures are derived from SPELLS below so
+ *    the Numbers section, the Arc and the Argument can never disagree.
  */
 
 export type Side = {
@@ -286,185 +290,15 @@ export const MOMENTS: Moment[] = [
 
 /* ------------------------------------------------------------------ */
 
-export type CareerNode = {
-  year: number;
-  place: string;
-  club: string;
-  note: string;
-  stat?: string;
-  /** Crest lookup for this stop, where one exists */
-  query?: string;
-  code?: string;
-  /** Running career totals at this point — the line has a quantity, not just a shape */
-  totals?: { apps: number; goals: number; trophies: number };
-};
-
-export type Career = {
-  id: string;
-  name: string;
-  born: string;
-  tagline: string;
-  nodes: CareerNode[];
-};
-
-export const CAREERS: Career[] = [
-  {
-    id: "arc-10",
-    name: "The Number Ten",
-    born: "Rosario, 1987",
-    tagline: "A growth hormone deficiency, a napkin contract, and 1,000+ games.",
-    nodes: [
-      {
-        year: 2000, place: "Rosario → Barcelona", club: "LA MASIA", stat: "AGE 13",
-        query: "Barcelona", code: "FCB",
-        note: "Signs on a paper napkin at thirteen. The club pays for his growth hormone treatment.",
-        totals: { apps: 0, goals: 0, trophies: 0 },
-      },
-      {
-        year: 2004, place: "Camp Nou", club: "DEBUT", stat: "AGE 17",
-        query: "Barcelona", code: "FCB",
-        note: "First-team debut at seventeen years and 114 days, as a substitute in a derby.",
-        totals: { apps: 9, goals: 1, trophies: 1 },
-      },
-      {
-        year: 2009, place: "Rome", club: "FIRST TREBLE", stat: "×3",
-        query: "Barcelona", code: "FCB",
-        note: "League, cup and European Cup in a single season, plus a header in the final.",
-        totals: { apps: 250, goals: 132, trophies: 11 },
-      },
-      {
-        year: 2012, place: "Barcelona", club: "91 GOALS", stat: "91",
-        query: "Barcelona", code: "FCB",
-        note: "A calendar-year scoring record across club and country that still stands.",
-        totals: { apps: 411, goals: 291, trophies: 18 },
-      },
-      {
-        year: 2015, place: "Berlin", club: "SECOND TREBLE", stat: "×6",
-        query: "Barcelona", code: "FCB",
-        note: "Barcelona become the only club to have won the treble twice.",
-        totals: { apps: 578, goals: 445, trophies: 25 },
-      },
-      {
-        year: 2021, place: "Paris", club: "DEPARTURE", stat: "21 YRS",
-        query: "Paris St Germain", code: "PSG",
-        note: "Leaves the only club he had ever played for, announced in tears at a press conference.",
-        totals: { apps: 778, goals: 672, trophies: 35 },
-      },
-      {
-        year: 2022, place: "Lusail", club: "THE CUP", stat: "★",
-        query: "Argentina", code: "ARG",
-        note: "The one trophy missing, at the last tournament he would play for it.",
-        totals: { apps: 850, goals: 701, trophies: 41 },
-      },
-      {
-        year: 2023, place: "Miami", club: "THE LEAGUE", stat: "→",
-        query: "Inter Miami", code: "MIA",
-        note: "Moves to a league whose club had never won a trophy. It won one within two months.",
-        totals: { apps: 900, goals: 750, trophies: 45 },
-      },
-    ],
-  },
-];
-
-/* ------------------------------------------------------------------ */
-
-export type Contender = {
-  id: string;
-  name: string;
-  /** TheSportsDB player lookup */
-  query: string;
-  era: string;
-  country: string;
-  claim: string;
-  /** Career figures, all senior club + country, rounded to the commonly cited totals */
-  figures: { goals: number; worldCups: number; europeanCups: number; ballonDOr: number };
-};
-
-/** Deliberately unranked. The ranking is the visitor's job. */
-export const CONTENDERS: Contender[] = [
-  { id: "c1", name: "PELÉ", query: "Pele", era: "1956–77", country: "Brazil",
-    claim: "Three World Cups. Nobody else has more than one as a decisive player.",
-    figures: { goals: 767, worldCups: 3, europeanCups: 0, ballonDOr: 0 } },
-  { id: "c2", name: "MARADONA", query: "Diego Maradona", era: "1976–97", country: "Argentina",
-    claim: "Carried a mid-table side to the Italian title. Twice.",
-    figures: { goals: 353, worldCups: 1, europeanCups: 0, ballonDOr: 0 } },
-  { id: "c3", name: "CRUYFF", query: "Johan Cruyff", era: "1964–84", country: "Netherlands",
-    claim: "Changed how the sport is thought about, not just how it is played.",
-    figures: { goals: 291, worldCups: 0, europeanCups: 3, ballonDOr: 3 } },
-  { id: "c4", name: "MESSI", query: "Lionel Messi", era: "2004–", country: "Argentina",
-    claim: "Every scoring record worth holding, and finally the trophy.",
-    figures: { goals: 750, worldCups: 1, europeanCups: 4, ballonDOr: 8 } },
-  { id: "c5", name: "RONALDO", query: "Cristiano Ronaldo", era: "2002–", country: "Portugal",
-    claim: "Five European Cups across three countries and three leagues.",
-    figures: { goals: 900, worldCups: 0, europeanCups: 5, ballonDOr: 5 } },
-  { id: "c6", name: "R. NAZÁRIO", query: "Ronaldo", era: "1993–2011", country: "Brazil",
-    claim: "Two ruptured knees. Still the best pure striker anyone saw.",
-    figures: { goals: 414, worldCups: 2, europeanCups: 0, ballonDOr: 2 } },
-  { id: "c7", name: "BECKENBAUER", query: "Franz Beckenbauer", era: "1964–83", country: "Germany",
-    claim: "Invented the modern sweeper, then won everything from the position.",
-    figures: { goals: 106, worldCups: 1, europeanCups: 3, ballonDOr: 2 } },
-  { id: "c8", name: "ZIDANE", query: "Zinedine Zidane", era: "1988–2006", country: "France",
-    claim: "The best big-occasion player of his generation, in both finals he decided.",
-    figures: { goals: 156, worldCups: 1, europeanCups: 1, ballonDOr: 1 } },
-  { id: "c9", name: "DI STÉFANO", query: "Alfredo Di Stefano", era: "1945–66", country: "Argentina",
-    claim: "Five European Cups in a row, scoring in every one of the finals.",
-    figures: { goals: 377, worldCups: 0, europeanCups: 5, ballonDOr: 2 } },
-  { id: "c10", name: "GARRINCHA", query: "Garrincha", era: "1953–72", country: "Brazil",
-    claim: "Brazil lost once in eleven years while he was on the pitch.",
-    figures: { goals: 249, worldCups: 2, europeanCups: 0, ballonDOr: 0 } },
-];
-
-/* ------------------------------------------------------------------ */
-
 /**
- * Where penalties actually go, and how often they are scored.
- * Zone order matches the six targets in the penalty section, reading left to
- * right, top row then bottom row. Figures are the well-documented shape of
- * top-flight penalty taking: roughly three in four are scored, the corners are
- * far safer than the middle, and high shots are safer than low ones.
- */
-export const PENALTY_REALITY = {
-  conversion: 0.76,
-  /** share of all penalties aimed at each zone */
-  distribution: [0.13, 0.06, 0.14, 0.27, 0.13, 0.27],
-  /** scoring rate when aimed at each zone */
-  scoreRate: [0.88, 0.81, 0.87, 0.72, 0.64, 0.73],
-  labels: ["Top L", "Top C", "Top R", "Low L", "Low C", "Low R"],
-};
-
-export const TIERS = [
-  { id: "s", label: "IMMORTAL", hint: "Changed the sport" },
-  { id: "a", label: "ALL-TIME", hint: "Best of an era" },
-  { id: "b", label: "GREAT", hint: "Would walk into any side" },
-] as const;
-
-/* ------------------------------------------------------------------ */
-
-/**
- * Section markers — the match clock reads from these, and they must stay in the
- * same order as the sections in page.tsx.
- */
-export const FIXTURES = [
-  { id: "kickoff", minute: 0, label: "KICK OFF" },
-  { id: "archive", minute: 12, label: "THE ARCHIVE" },
-  { id: "halftime", minute: 45, label: "HALF TIME" },
-  { id: "numbers", minute: 48, label: "THE NUMBERS" },
-  { id: "arc", minute: 52, label: "THE ARC" },
-  { id: "penalty", minute: 66, label: "THE SPOT" },
-  { id: "tierlist", minute: 78, label: "THE ARGUMENT" },
-  { id: "fulltime", minute: 90, label: "FULL TIME" },
-] as const;
-
-/* ------------------------------------------------------------------ */
-
-/**
- * 45' — THE NUMBERS
+ * 48' — THE NUMBERS
  * The bridge between the Archive (history that happened to everyone) and the
  * Arc (one career). Season-by-season figures, all competitions.
  *
- * The Barcelona and PSG spells are finished, so those numbers are final and
- * will not drift. Inter Miami is ongoing and is deliberately shown as a spell
- * total rather than invented per-season detail.
+ * The Barcelona and Paris spells are finished, so those numbers are final and
+ * will not drift. Inter Miami is ongoing and is deliberately carried as a spell
+ * total rather than invented per-season detail — see SEASON_COVERAGE, which is
+ * what the chart uses to say so out loud.
  */
 export type Season = {
   label: string;
@@ -507,12 +341,13 @@ export type Spell = {
   note: string;
 };
 
-export const SPELLS: Spell[] = [
-  {
-    id: "ALL", name: "Everything", years: "2004—", query: null, code: "ALL",
-    apps: 1120, goals: 890, trophies: 46,
-    note: "Club and country combined, all senior competitions.",
-  },
+/**
+ * The four real spells. "Everything" is derived from these below rather than
+ * typed out again — the two used to be maintained by hand and had drifted
+ * twenty-seven appearances apart, which a visitor could catch by adding up the
+ * four tabs sitting next to it.
+ */
+const SPELL_PARTS: Spell[] = [
   {
     id: "BAR", name: "Barcelona", years: "2004—2021", query: "Barcelona", code: "BAR",
     apps: 778, goals: 672, trophies: 35,
@@ -535,6 +370,39 @@ export const SPELLS: Spell[] = [
   },
 ];
 
+const total = (key: "apps" | "goals" | "trophies") =>
+  SPELL_PARTS.reduce((n, s) => n + s[key], 0);
+
+/** The one career total the whole site quotes. Nothing hard-codes it. */
+export const CAREER_TOTALS = {
+  apps: total("apps"),
+  goals: total("goals"),
+  trophies: total("trophies"),
+};
+
+export const SPELLS: Spell[] = [
+  {
+    id: "ALL", name: "Everything", years: "2004—", query: null, code: "ALL",
+    ...CAREER_TOTALS,
+    note: "Club and country combined, all senior competitions — the four spells added together.",
+  },
+  ...SPELL_PARTS,
+];
+
+/**
+ * Which spells the season-by-season chart can actually break down.
+ * Miami and Argentina have no per-season rows here, and the chart says so
+ * rather than quietly showing the Barcelona and Paris years underneath the
+ * wrong heading.
+ */
+export const SEASON_COVERAGE: Record<Spell["id"], "own" | "club-run" | "none"> = {
+  ALL: "club-run",
+  BAR: "own",
+  PSG: "own",
+  MIA: "none",
+  ARG: "none",
+};
+
 /** Records worth arguing over — each one checkable. */
 export const RECORDS = [
   { value: "91", label: "Goals in a calendar year", detail: "2012. The previous record had stood since 1972." },
@@ -542,3 +410,191 @@ export const RECORDS = [
   { value: "474", label: "La Liga goals", detail: "The competition's all-time record." },
   { value: "21", label: "Seasons scoring 20+", detail: "Consecutive, across three countries." },
 ];
+
+/* ------------------------------------------------------------------ */
+
+export type CareerNode = {
+  year: number;
+  place: string;
+  club: string;
+  note: string;
+  stat?: string;
+  /** Crest lookup for this stop, where one exists */
+  query?: string;
+  code?: string;
+  /**
+   * Running career totals at this point — the line has a quantity, not just a
+   * shape. Club and country combined, so the club component always agrees with
+   * SEASONS above and the final stop always equals CAREER_TOTALS.
+   */
+  totals?: { apps: number; goals: number; trophies: number };
+};
+
+export type Career = {
+  id: string;
+  name: string;
+  born: string;
+  tagline: string;
+  nodes: CareerNode[];
+};
+
+export const CAREERS: Career[] = [
+  {
+    id: "arc-10",
+    name: "The Number Ten",
+    born: "Rosario, 1987",
+    tagline: "A growth hormone deficiency, a napkin contract, and 1,000+ games.",
+    nodes: [
+      {
+        year: 2000, place: "Rosario → Barcelona", club: "LA MASIA", stat: "AGE 13",
+        query: "Barcelona", code: "FCB",
+        note: "Signs on a paper napkin at thirteen. The club pays for his growth hormone treatment.",
+        totals: { apps: 0, goals: 0, trophies: 0 },
+      },
+      {
+        year: 2004, place: "Camp Nou", club: "DEBUT", stat: "AGE 17",
+        query: "Barcelona", code: "FCB",
+        note: "First-team debut at seventeen years and 114 days, as a substitute in a derby.",
+        totals: { apps: 9, goals: 1, trophies: 1 },
+      },
+      {
+        year: 2009, place: "Rome", club: "FIRST TREBLE", stat: "×3",
+        query: "Barcelona", code: "FCB",
+        note: "League, cup and European Cup in a single season, plus a header in the final.",
+        // 161 club apps / 80 goals through 08/09 in SEASONS, plus ~46 caps
+        totals: { apps: 207, goals: 93, trophies: 8 },
+      },
+      {
+        year: 2012, place: "Barcelona", club: "91 GOALS", stat: "91",
+        query: "Barcelona", code: "FCB",
+        note: "A calendar-year scoring record across club and country that still stands.",
+        totals: { apps: 405, goals: 284, trophies: 19 },
+      },
+      {
+        year: 2015, place: "Berlin", club: "SECOND TREBLE", stat: "×6",
+        query: "Barcelona", code: "FCB",
+        note: "Barcelona become the only club to have won the treble twice.",
+        totals: { apps: 589, goals: 458, trophies: 24 },
+      },
+      {
+        year: 2021, place: "Paris", club: "DEPARTURE", stat: "21 YRS",
+        query: "Paris St Germain", code: "PSG",
+        note: "Leaves the only club he had ever played for, announced in tears at a press conference.",
+        // the closed Barcelona spell (778/672) plus the caps won by then
+        totals: { apps: 929, goals: 748, trophies: 36 },
+      },
+      {
+        year: 2022, place: "Lusail", club: "THE CUP", stat: "★",
+        query: "Argentina", code: "ARG",
+        note: "The one trophy missing, at the last tournament he would play for it.",
+        totals: { apps: 1003, goals: 793, trophies: 39 },
+      },
+      {
+        year: 2023, place: "Miami", club: "THE LEAGUE", stat: "→",
+        query: "Inter Miami", code: "MIA",
+        note: "Moves to a league whose club had never won a trophy. It won one within two months.",
+        // the last stop is the career to date, so it must equal the Numbers section
+        totals: { ...CAREER_TOTALS },
+      },
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+
+export type Contender = {
+  id: string;
+  name: string;
+  /** TheSportsDB player lookup */
+  query: string;
+  era: string;
+  country: string;
+  claim: string;
+  /** Career figures, all senior club + country, rounded to the commonly cited totals */
+  figures: { goals: number; worldCups: number; europeanCups: number; ballonDOr: number };
+  /** Still playing — the figures are a snapshot, and the section says so */
+  ongoing?: boolean;
+};
+
+/** Deliberately unranked. The ranking is the visitor's job. */
+export const CONTENDERS: Contender[] = [
+  { id: "c1", name: "PELÉ", query: "Pele", era: "1956–77", country: "Brazil",
+    claim: "Three World Cups. Nobody else has more than one as a decisive player.",
+    figures: { goals: 767, worldCups: 3, europeanCups: 0, ballonDOr: 0 } },
+  { id: "c2", name: "MARADONA", query: "Diego Maradona", era: "1976–97", country: "Argentina",
+    claim: "Carried a mid-table side to the Italian title. Twice.",
+    figures: { goals: 353, worldCups: 1, europeanCups: 0, ballonDOr: 0 } },
+  { id: "c3", name: "CRUYFF", query: "Johan Cruyff", era: "1964–84", country: "Netherlands",
+    claim: "Changed how the sport is thought about, not just how it is played.",
+    figures: { goals: 291, worldCups: 0, europeanCups: 3, ballonDOr: 3 } },
+  // goals here is CAREER_TOTALS.goals — the Numbers section and the Arc quote the
+  // same figure, and a visitor comparing the two sections will notice if it moves
+  { id: "c4", name: "MESSI", query: "Lionel Messi", era: "2004–", country: "Argentina",
+    claim: "Every scoring record worth holding, and finally the trophy.",
+    figures: { goals: CAREER_TOTALS.goals, worldCups: 1, europeanCups: 4, ballonDOr: 8 },
+    ongoing: true },
+  { id: "c5", name: "RONALDO", query: "Cristiano Ronaldo", era: "2002–", country: "Portugal",
+    claim: "Five European Cups across three countries and three leagues.",
+    figures: { goals: 950, worldCups: 0, europeanCups: 5, ballonDOr: 5 },
+    ongoing: true },
+  { id: "c6", name: "R. NAZÁRIO", query: "Ronaldo", era: "1993–2011", country: "Brazil",
+    claim: "Two ruptured knees. Still the best pure striker anyone saw.",
+    figures: { goals: 414, worldCups: 2, europeanCups: 0, ballonDOr: 2 } },
+  { id: "c7", name: "BECKENBAUER", query: "Franz Beckenbauer", era: "1964–83", country: "Germany",
+    claim: "Invented the modern sweeper, then won everything from the position.",
+    figures: { goals: 106, worldCups: 1, europeanCups: 3, ballonDOr: 2 } },
+  { id: "c8", name: "ZIDANE", query: "Zinedine Zidane", era: "1988–2006", country: "France",
+    claim: "The best big-occasion player of his generation, in both finals he decided.",
+    figures: { goals: 156, worldCups: 1, europeanCups: 1, ballonDOr: 1 } },
+  { id: "c9", name: "DI STÉFANO", query: "Alfredo Di Stefano", era: "1945–66", country: "Argentina",
+    claim: "Five European Cups in a row, scoring in every one of the finals.",
+    figures: { goals: 377, worldCups: 0, europeanCups: 5, ballonDOr: 2 } },
+  { id: "c10", name: "GARRINCHA", query: "Garrincha", era: "1953–72", country: "Brazil",
+    claim: "Brazil lost once in eleven years while he was on the pitch.",
+    figures: { goals: 249, worldCups: 2, europeanCups: 0, ballonDOr: 0 } },
+];
+
+/* ------------------------------------------------------------------ */
+
+/**
+ * Where penalties actually go, and how often they are scored.
+ * Zone order matches the six targets in the penalty section, reading left to
+ * right, top row then bottom row. Figures are the well-documented shape of
+ * top-flight penalty taking: roughly three in four are scored, height matters
+ * more than width (every high target outscores every low one), and the low
+ * centre is the worst place on the goal.
+ *
+ * distribution sums to 1, and distribution · scoreRate = 0.76, so the headline
+ * conversion rate is the one the zone table actually implies.
+ */
+export const PENALTY_REALITY = {
+  conversion: 0.76,
+  /** share of all penalties aimed at each zone */
+  distribution: [0.13, 0.06, 0.14, 0.27, 0.13, 0.27],
+  /** scoring rate when aimed at each zone */
+  scoreRate: [0.88, 0.81, 0.87, 0.72, 0.64, 0.73],
+  labels: ["Top L", "Top C", "Top R", "Low L", "Low C", "Low R"],
+};
+
+export const TIERS = [
+  { id: "s", label: "IMMORTAL", hint: "Changed the sport" },
+  { id: "a", label: "ALL-TIME", hint: "Best of an era" },
+  { id: "b", label: "GREAT", hint: "Would walk into any side" },
+] as const;
+
+/* ------------------------------------------------------------------ */
+
+/**
+ * Section markers — the match clock reads from these, and they must stay in the
+ * same order as the sections in page.tsx.
+ */
+export const FIXTURES = [
+  { id: "kickoff", minute: 0, label: "KICK OFF" },
+  { id: "archive", minute: 12, label: "THE ARCHIVE" },
+  { id: "halftime", minute: 45, label: "HALF TIME" },
+  { id: "numbers", minute: 48, label: "THE NUMBERS" },
+  { id: "arc", minute: 52, label: "THE ARC" },
+  { id: "penalty", minute: 66, label: "THE SPOT" },
+  { id: "tierlist", minute: 78, label: "THE ARGUMENT" },
+  { id: "fulltime", minute: 90, label: "FULL TIME" },
+] as const;
